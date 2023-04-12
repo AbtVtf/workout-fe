@@ -10,16 +10,22 @@ const initialState = {
 // Add the async actions for your API routes here
 export const addWeight = createAsyncThunk(
   "workout/addWeight",
-  async ({ workout_id, exercise_id, weight }, { rejectWithValue }) => {
+  async (
+    { workout_id, exercise_id, weight },
+    { getState, rejectWithValue }
+  ) => {
     try {
-      const response = await fetch("/api/workouts/weight", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("token"),
-        },
-        body: JSON.stringify({ workout_id, exercise_id, weight }),
-      });
+      const response = await fetch(
+        "http://localhost:3001/api/workouts/weight",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: getState().auth.token,
+          },
+          body: JSON.stringify({ workout_id, exercise_id, weight }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error adding weight");
@@ -34,14 +40,14 @@ export const addWeight = createAsyncThunk(
 
 export const getCurrentWorkout = createAsyncThunk(
   "workout/getCurrentWorkout",
-  async (_, { rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
       const response = await fetch(
         "http://localhost:3001/api/workouts/current",
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
+            Authorization: getState().auth.token,
           },
         }
       );
@@ -59,13 +65,13 @@ export const getCurrentWorkout = createAsyncThunk(
 
 export const completeWorkout = createAsyncThunk(
   "workout/completeWorkout",
-  async (workout_id, { rejectWithValue }) => {
+  async (workout_id, { getState, rejectWithValue }) => {
     try {
       const response = await fetch("/api/workouts/complete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: localStorage.getItem("token"),
+          Authorization: getState().auth.token,
         },
         body: JSON.stringify({ workout_id }),
       });

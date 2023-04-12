@@ -16,7 +16,7 @@ export const addWeight = createAsyncThunk(
   ) => {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/workouts/weight",
+        `${process.env.REACT_APP_API_BASE_URL}/api/workouts/weight`,
         {
           method: "POST",
           headers: {
@@ -43,7 +43,7 @@ export const getCurrentWorkout = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/workouts/current",
+        `${process.env.REACT_APP_API_BASE_URL}/api/workouts/current`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -67,14 +67,17 @@ export const completeWorkout = createAsyncThunk(
   "workout/completeWorkout",
   async (workout_id, { getState, rejectWithValue }) => {
     try {
-      const response = await fetch("/api/workouts/complete", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: getState().auth.token,
-        },
-        body: JSON.stringify({ workout_id }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/workouts/complete`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: getState().auth.token,
+          },
+          body: JSON.stringify({ workout_id }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error completing workout");

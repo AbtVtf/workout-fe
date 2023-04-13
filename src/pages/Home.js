@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../features/auth/authSlice";
 import { addWeight, getCurrentWorkout } from "../features/workout/workoutSlice";
-import ExerciseCard from "./ExerciseCard";
+import ExerciseCard from "../components/ExerciseCard";
 
 const HomeContainer = styled.div`
   min-height: 100vh;

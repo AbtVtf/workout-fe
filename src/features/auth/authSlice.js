@@ -56,6 +56,7 @@ export const login = createAsyncThunk(
 
 const initialState = {
   token: null,
+  isAuthenticated: false,
   isLoading: false,
   error: null,
 };
@@ -100,6 +101,7 @@ const authSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.isLoading = false;
       state.token = action.payload;
+      state.isAuthenticated = true;
       state.error = null;
     });
     builder.addCase(login.rejected, (state, action) => {

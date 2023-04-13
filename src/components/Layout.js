@@ -12,14 +12,10 @@ const NavbarWrapper = styled.div`
   bottom: 0;
 `;
 
-const ContentWrapper = styled.div`
-  padding-bottom: 60px; // Adjust to the height of your navbar
-`;
-
 const Layout = ({ children }) => {
   return (
     <LayoutContainer>
-      <ContentWrapper>{children}</ContentWrapper>
+      {children}
       {!window.location.href.split("/").includes("auth") && (
         <NavbarWrapper>
           <BottomNavbar />

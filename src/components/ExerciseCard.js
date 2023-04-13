@@ -87,12 +87,10 @@ const ExerciseCard = ({ props }) => {
   const token = useSelector((state) => state.auth.token);
   const workouts = useSelector((state) => state.workout.currentWorkout);
   const [weight, setWeight] = useState(0);
-
-  const handleFetchCurrentWorkout = () => {
-    dispatch(getCurrentWorkout());
-  };
+  const [isDone, setIsDone] = useState(false);
 
   const handleAddWeight = (workout_id, exercise_id) => {
+    setIsDone(true);
     dispatch(
       addWeight({
         workout_id: workout_id,
@@ -102,70 +100,68 @@ const ExerciseCard = ({ props }) => {
     );
   };
 
-  useEffect(() => {
-    handleFetchCurrentWorkout();
-  }, [token]);
-
   return (
-    <ExerciseCardContainer>
-      <CenteredHeading>{props.exercise_name}</CenteredHeading>
-
-      <Row>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "90%",
-            justifyContent: "space-between",
-          }}
-        >
-          <span style={{ fontSize: "22px", fontWeight: 600 }}>
-            S: {props.sets}
-          </span>
-          <span style={{ fontSize: "22px", fontWeight: 600 }}>
-            R: {props.reps}
-          </span>
+    <>
+      <ExerciseCardContainer>
+        <CenteredHeading>{props.exercise_name}</CenteredHeading>
+        <Row>
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              gap: "15px",
-              fontSize: "20px",
+              flexDirection: "column",
+              height: "150px",
+              justifyContent: "space-around",
             }}
           >
-            <span style={{ fontSize: "22px", fontWeight: 600 }}>W: </span>
-            <WeightInput
-              value={weight}
-              onChange={(event) => setWeight(event.target.value)}
-            />
+            <span style={{ fontSize: "22px", fontWeight: 600 }}>
+              🎯 S: {props.sets}
+            </span>
+            <span style={{ fontSize: "22px", fontWeight: 600 }}>
+              🔁 R: {props.reps}
+            </span>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "15px",
+                fontSize: "20px",
+              }}
+            >
+              <span style={{ fontSize: "22px", fontWeight: 600 }}>⚖️ W: </span>
+              <WeightInput
+                value={weight}
+                onChange={(event) => setWeight(event.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <Image src={props.url} />
-      </Row>
-      <Row>
-        {props.history.length > 0 ? (
-          <div>
-            <h2>
-              Past weight:{" "}
-              {props.history.map((historyObject, index) => {
-                if (index + 1 === props.history.length) {
-                  return <span>{historyObject.weight}</span>;
-                }
-              })}{" "}
-              Kg
-            </h2>
-          </div>
-        ) : (
-          <h2 style={{ fontWeight: "400" }}>No recorded weight </h2>
-        )}
-      </Row>
-      <CompleteButton
-        onClick={() => handleAddWeight(props.workout_id, props.exercise_id)}
-      >
-        Done & Dusted
-      </CompleteButton>
-    </ExerciseCardContainer>
+          <Image src={props.url} />
+        </Row>
+        <Row>
+          {props.history.length > 0 ? (
+            <div>
+              <h2>
+                🏋️ Last weight:{" "}
+                {props.history.map((historyObject, index) => {
+                  if (index + 1 === props.history.length) {
+                    return <span>{historyObject.weight}</span>;
+                  }
+                })}{" "}
+                Kg
+              </h2>
+            </div>
+          ) : (
+            <h2 style={{ fontWeight: "400" }}>No recorded weight </h2>
+          )}
+        </Row>
+
+        <CompleteButton
+          onClick={() => handleAddWeight(props.workout_id, props.exercise_id)}
+        >
+          {isDone ? "👏Done & Dusted👏" : "Complete exercise"}
+        </CompleteButton>
+      </ExerciseCardContainer>
+    </>
   );
 };
 

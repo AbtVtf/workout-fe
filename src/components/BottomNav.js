@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import icon from "../assets/images/logo512.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../features/auth/authSlice";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -39,7 +41,12 @@ const LogoContainer = styled.div`
 
 const BottomNavbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const handleSingOut = () => {
+    dispatch(logout());
+    navigate("/auth");
+  };
   return (
     <NavbarContainer>
       <NavbarItem onClick={() => navigate("/")}>
@@ -50,8 +57,8 @@ const BottomNavbar = () => {
           <img src={icon} style={{ width: "50px", height: "50px" }} />
         </LogoContainer>
       </NavbarItem>
-      <NavbarItem>
-        <h1>Profile</h1>
+      <NavbarItem onClick={handleSingOut}>
+        <h1>Sign Out</h1>
       </NavbarItem>
     </NavbarContainer>
   );

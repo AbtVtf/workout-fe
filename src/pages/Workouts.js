@@ -48,11 +48,13 @@ const Workouts = () => {
 
   const handleFinishWorkout = () => {
     dispatch(completeWorkout(workout.workout_id));
+    dispatch(getCurrentWorkout());
     navigate("/");
   };
 
   useEffect(() => {
     handleFetchCurrentWorkout();
+    window.scrollTo(0, 0);
   }, []);
 
   return (

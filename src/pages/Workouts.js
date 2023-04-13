@@ -7,6 +7,7 @@ import {
 } from "../features/workout/workoutSlice";
 import ExerciseCard from "../components/ExerciseCard";
 import TopNav from "../components/TopNav";
+import { useNavigate } from "react-router-dom";
 
 const WorkoutContainer = styled.div`
   display: flex;
@@ -37,6 +38,8 @@ const CompleteButton = styled.button`
 
 const Workouts = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const workout = useSelector((state) => state.workout.currentWorkout);
   const [doneCounter, setDoneCounter] = useState(0);
   const handleFetchCurrentWorkout = () => {
@@ -45,6 +48,7 @@ const Workouts = () => {
 
   const handleFinishWorkout = () => {
     dispatch(completeWorkout(workout.workout_id));
+    navigate("/");
   };
 
   useEffect(() => {

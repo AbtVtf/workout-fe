@@ -31,13 +31,14 @@ const CenteredHeading = styled.h1`
   justify-content: center;
   text-align: center;
   font-family: "Roboto", sans-serif;
+  border-bottom: 1px solid black;
   /* white-space: nowrap; */
   /* overflow: hidden; */
   /* text-overflow: ellipsis; */
 `;
 
 const Image = styled.img`
-  width: 200px;
+  width: 170px;
   align-self: center;
   border-radius: 20%;
   margin-bottom: 10px;
@@ -53,12 +54,14 @@ const Row = styled.div`
 
 const WeightInput = styled.input`
   width: 35px;
-  height: 20px;
+  height: 27px;
   margin: 0;
   text-align: center;
   border: none;
   font-size: 20px;
   font-weight: 500;
+  border: 1px solid black;
+  border-radius: 10px;
 `;
 
 const CompleteButton = styled.button`
@@ -73,7 +76,7 @@ const CompleteButton = styled.button`
   /* letter-spacing: 1px; */
   border-radius: 10px;
   border: none;
-  background-color: #262729;
+  background-color: #208a16;
   color: white;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
@@ -106,28 +109,39 @@ const ExerciseCard = ({ props }) => {
   return (
     <ExerciseCardContainer>
       <CenteredHeading>{props.exercise_name}</CenteredHeading>
-      <Image src={props.url} />
-      <Row>
-        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          <span style={{ fontSize: "22px" }}>S: {props.sets}</span>
-          <span style={{ fontSize: "22px" }}>R: {props.reps}</span>
-        </div>
 
+      <Row>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            gap: "15px",
-            fontSize: "20px",
+            height: "90%",
+            justifyContent: "space-between",
           }}
         >
-          <span style={{ fontSize: "22px" }}>Weight</span>
-          <WeightInput
-            value={weight}
-            onChange={(event) => setWeight(event.target.value)}
-          />
+          <span style={{ fontSize: "22px", fontWeight: 600 }}>
+            S: {props.sets}
+          </span>
+          <span style={{ fontSize: "22px", fontWeight: 600 }}>
+            R: {props.reps}
+          </span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "15px",
+              fontSize: "20px",
+            }}
+          >
+            <span style={{ fontSize: "22px", fontWeight: 600 }}>W: </span>
+            <WeightInput
+              value={weight}
+              onChange={(event) => setWeight(event.target.value)}
+            />
+          </div>
         </div>
+        <Image src={props.url} />
       </Row>
       <Row>
         {props.history.length > 0 ? (

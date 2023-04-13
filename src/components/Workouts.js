@@ -12,6 +12,7 @@ const WorkoutContainer = styled.div`
   align-items: center;
   height: 100vh;
   overflow: scroll;
+  padding: 50px 0;
 `;
 
 const Workouts = () => {
@@ -24,19 +25,9 @@ const Workouts = () => {
     dispatch(getCurrentWorkout());
   };
 
-  const handleAddWeight = (workout_id, exercise_id) => {
-    dispatch(
-      addWeight({
-        workout_id: workout_id,
-        exercise_id: exercise_id,
-        weight: weight,
-      })
-    );
-  };
-
   useEffect(() => {
     handleFetchCurrentWorkout();
-  }, [token]);
+  }, []);
 
   return (
     <WorkoutContainer>

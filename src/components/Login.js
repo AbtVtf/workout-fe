@@ -6,24 +6,21 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/optilogo.png";
 
 const Container = styled.div`
-  width: 100vw;
+  /* width: 100vw; */
   /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 `;
 
 const Card = styled.div`
   width: 250px;
   padding: 20px;
-  /* background-color: #f8f8f8; */
   border-radius: 8px;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 35%;
-
   background: rgba(250, 238, 238, 0.45);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(3px);
@@ -101,7 +98,11 @@ const Login = () => {
             placeholder="Password"
             required
           />
-          <Button type="submit">BEGIN</Button>
+          <p style={{ textAlign: "center", fontWeight: 600, fontSize: "18px" }}>
+            Maximize Your Gains
+            <br /> Optimize Your Life
+          </p>
+          <Button type="submit">Start now</Button>
         </Form>
         {isLoading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}

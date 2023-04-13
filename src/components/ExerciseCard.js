@@ -145,7 +145,7 @@ const ExerciseCard = ({ exercise, counter, setCounter }) => {
                 🏋️ Last weight:{" "}
                 {history.map((historyObject, index) => {
                   if (index + 1 === history.length) {
-                    return <span>{historyObject.weight}</span>;
+                    return <span key={index}>{historyObject.weight}</span>;
                   }
                 })}{" "}
                 Kg

@@ -42,9 +42,17 @@ const TopNav = ({ counter, length }) => {
     <NavbarContainer>
       {Array.from({ length }).map((_, index) => {
         if (index < counter) {
-          return <img src={full} style={{ height: "30px" }} />;
+          return (
+            <img src={full} style={{ height: "30px" }} key={`full-${index}`} />
+          );
         } else {
-          return <img src={empty} style={{ height: "30px" }} />;
+          return (
+            <img
+              src={empty}
+              style={{ height: "30px" }}
+              key={`empty-${index}`}
+            />
+          );
         }
       })}
     </NavbarContainer>

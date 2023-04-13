@@ -12,7 +12,18 @@ import Layout from "./components/Layout";
 function App() {
   return (
     <div>
-      <ParticlesBg type="cobweb" color="#0F58AE" bg />
+      <div
+        style={{
+          position: "fixed", // Changed from absolute to fixed
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -1, // Add zIndex to keep particles container behind content
+        }}
+      >
+        <ParticlesBg type="cobweb" color="#0F58AE" />
+      </div>
 
       <Router>
         <Routes>

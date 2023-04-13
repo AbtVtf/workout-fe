@@ -4,13 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../features/auth/authSlice";
 import { addWeight, getCurrentWorkout } from "../features/workout/workoutSlice";
 
-const WorkoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-`;
-
 const ExerciseCardContainer = styled.div`
   width: 80vw;
   display: flex;
@@ -18,15 +11,29 @@ const ExerciseCardContainer = styled.div`
   border: 1px solid black;
   border-radius: 16px;
   padding: 20px 20px 50px 20px;
-  background-color: #27496d;
-  color: white;
+  /* background-color: #27496d; */
+  color: #262729;
+
+  background: rgba(250, 238, 238, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid #b1b3b5;
 `;
 
 const CenteredHeading = styled.h1`
   align-self: center;
   font-size: 28px;
-  transform: skew(-12deg);
-  margin-bottom: "20px";
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  /* white-space: nowrap; */
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
 `;
 
 const Image = styled.img`
@@ -34,6 +41,7 @@ const Image = styled.img`
   align-self: center;
   border-radius: 20%;
   margin-bottom: 10px;
+  border: 1px solid #666869;
 `;
 
 const Row = styled.div`
@@ -62,12 +70,13 @@ const CompleteButton = styled.button`
   align-items: center;
   width: 80%;
   align-self: center;
-  letter-spacing: 2px;
+  /* letter-spacing: 1px; */
   border-radius: 10px;
   border: none;
-  background-color: #00a8cc;
+  background-color: #262729;
   color: white;
-  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
 `;
 
 const ExerciseCard = ({ props }) => {
@@ -140,7 +149,7 @@ const ExerciseCard = ({ props }) => {
       <CompleteButton
         onClick={() => handleAddWeight(props.workout_id, props.exercise_id)}
       >
-        Complete Exercise
+        Done & Dusted
       </CompleteButton>
     </ExerciseCardContainer>
   );

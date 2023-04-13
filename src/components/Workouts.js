@@ -10,7 +10,8 @@ const WorkoutContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  background-color: #142850;
+  height: 100vh;
+  overflow: scroll;
 `;
 
 const Workouts = () => {
@@ -40,56 +41,7 @@ const Workouts = () => {
   return (
     <WorkoutContainer>
       {workouts?.exercises.map((exercise) => {
-        return (
-          <ExerciseCard props={exercise} />
-          // <ExerciseCard>
-          //   <CenteredHeading>{exercise.exercise_name}</CenteredHeading>
-          //   <Image src={exercise.url} />
-          //   <Row>
-          //     <h1>Sets: {exercise.sets}</h1>
-          //     <h1>Reps: {exercise.reps}</h1>
-          //   </Row>
-          //   <Row>
-          //     {exercise.history.length > 0 ? (
-          //       <div>
-          //         <h2>
-          //           Past weight:{" "}
-          //           {exercise.history.map((historyObject, index) => {
-          //             if (index + 1 === exercise.history.length) {
-          //               return <span>{historyObject.weight}</span>;
-          //             }
-          //           })}{" "}
-          //           Kg
-          //         </h2>
-          //       </div>
-          //     ) : (
-          //       <h2>No past weight </h2>
-          //     )}
-          //     <div
-          //       style={{
-          //         display: "flex",
-          //         flexDirection: "row",
-          //         alignItems: "center",
-          //         gap: "15px",
-          //         fontSize: "20px",
-          //       }}
-          //     >
-          //       <h3>Weight</h3>
-          //       <WeightInput
-          //         value={weight}
-          //         onChange={(event) => setWeight(event.target.value)}
-          //       />
-          //     </div>
-          //   </Row>
-          //   <CompleteButton
-          //     onClick={() =>
-          //       handleAddWeight(exercise.workout_id, exercise.exercise_id)
-          //     }
-          //   >
-          //     Complete Exercise
-          //   </CompleteButton>
-          // </ExerciseCard>
-        );
+        return <ExerciseCard props={exercise} />;
       })}
     </WorkoutContainer>
   );

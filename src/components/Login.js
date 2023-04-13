@@ -3,18 +3,39 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/images/optilogo.png";
+
+const Container = styled.div`
+  width: 100vw;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Card = styled.div`
-  width: 300px;
-  margin: 50px auto;
+  width: 250px;
   padding: 20px;
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35%;
+
+  background: rgba(250, 238, 238, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  width: 80%;
 `;
 
 const Input = styled.input`
@@ -27,13 +48,15 @@ const Input = styled.input`
 
 const Button = styled.button`
   padding: 8px 12px;
-  background-color: #007bff;
+  background-color: #0f58ae;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 2px;
   &:hover {
     background-color: #0056b3;
   }
@@ -60,28 +83,30 @@ const Login = () => {
   }, [token]);
 
   return (
-    <Card>
-      <h2>Login</h2>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          required
-        />
-        <Input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <Button type="submit">Login</Button>
-      </Form>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-    </Card>
+    <Container>
+      <Card>
+        <img src={logo} style={{ width: "200px" }} />
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            required
+          />
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+          <Button type="submit">BEGIN</Button>
+        </Form>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
+      </Card>
+    </Container>
   );
 };
 

@@ -8,11 +8,9 @@ import ExerciseCard from "./ExerciseCard";
 const WorkoutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
   align-items: center;
-  height: 100vh;
-  overflow: scroll;
-  padding: 50px 0;
+  padding: 30px 0;
 `;
 
 const Workouts = () => {

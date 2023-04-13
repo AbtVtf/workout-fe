@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import icon from "../assets/images/logo512.png";
+import { useNavigate } from "react-router-dom";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -37,9 +38,11 @@ const LogoContainer = styled.div`
 `;
 
 const BottomNavbar = () => {
+  const navigate = useNavigate();
+
   return (
     <NavbarContainer>
-      <NavbarItem>
+      <NavbarItem onClick={() => navigate("/home")}>
         <h1>Home</h1>
       </NavbarItem>
       <NavbarItem>

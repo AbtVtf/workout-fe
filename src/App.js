@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Home from "./components/Home";
 import Workouts from "./components/Workouts";
 import ParticlesBg from "particles-bg";
-import BottomNavbar from "./components/BottomNav";
 import styled from "styled-components";
 import Layout from "./components/Layout";
 // import Profile from "./components/Profile";
@@ -23,14 +23,14 @@ function App() {
       <Router>
         <Layout>
           <Routes>
-            <Route exact path="/" element={<Login />} />
+            <Route exact path="/" element={<Home />} />
+            <Route path="/auth" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/workouts" element={<Workouts />} />
             {/* <Route path="/profile" component={Profile} />*/}
           </Routes>
         </Layout>
       </Router>
-      {/* <BottomNavbar /> */}
     </div>
   );
 }

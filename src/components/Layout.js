@@ -10,9 +10,6 @@ const LayoutContainer = styled.div`
 const NavbarWrapper = styled.div`
   position: sticky;
   bottom: 0;
-  /* bottom: 0; */
-  /* left: 0; */
-  /* right: 0; */
 `;
 
 const ContentWrapper = styled.div`
@@ -23,9 +20,11 @@ const Layout = ({ children }) => {
   return (
     <LayoutContainer>
       <ContentWrapper>{children}</ContentWrapper>
-      <NavbarWrapper>
-        <BottomNavbar />
-      </NavbarWrapper>
+      {!window.location.href.split("/").includes("auth") && (
+        <NavbarWrapper>
+          <BottomNavbar />
+        </NavbarWrapper>
+      )}
     </LayoutContainer>
   );
 };

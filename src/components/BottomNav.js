@@ -42,11 +42,11 @@ const BottomNavbar = () => {
 
   return (
     <NavbarContainer>
-      <NavbarItem onClick={() => navigate("/home")}>
+      <NavbarItem onClick={() => navigate("/")}>
         <h1>Home</h1>
       </NavbarItem>
       <NavbarItem>
-        <LogoContainer>
+        <LogoContainer onClick={() => navigate("/workouts")}>
           <img src={icon} style={{ width: "50px", height: "50px" }} />
         </LogoContainer>
       </NavbarItem>

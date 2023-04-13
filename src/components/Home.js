@@ -6,11 +6,29 @@ import { addWeight, getCurrentWorkout } from "../features/workout/workoutSlice";
 import ExerciseCard from "./ExerciseCard";
 
 const HomeContainer = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ExerciseCardContainer = styled.div`
+  width: 80vw;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  padding: 30px 0;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 20px 20px 50px 20px;
+  /* background-color: #27496d; */
+  color: #262729;
+
+  background: rgba(250, 238, 238, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid #b1b3b5;
 `;
 
 const Home = () => {
@@ -27,7 +45,11 @@ const Home = () => {
     handleFetchCurrentWorkout();
   }, []);
 
-  return <HomeContainer></HomeContainer>;
+  return (
+    <HomeContainer>
+      <ExerciseCardContainer />
+    </HomeContainer>
+  );
 };
 
 export default Home;

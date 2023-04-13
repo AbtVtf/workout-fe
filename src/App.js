@@ -21,15 +21,29 @@ function App() {
       <ParticlesBg type="cobweb" color="#0F58AE" bg />
 
       <Router>
-        <Layout>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/auth" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/workouts" element={<Workouts />} />
-            {/* <Route path="/profile" component={Profile} />*/}
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route path="/auth" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route
+            exact
+            path="/"
+            element={
+              <Layout>
+                <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path="/workouts"
+            element={
+              <Layout>
+                <Workouts />
+              </Layout>
+            }
+          />
+          {/* <Route path="/profile" component={Profile} />*/}
+        </Routes>
       </Router>
     </div>
   );

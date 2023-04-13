@@ -75,7 +75,7 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
-      navigate("/workouts");
+      navigate("/");
     }
   }, [token]);
 

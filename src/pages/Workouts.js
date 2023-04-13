@@ -6,6 +6,7 @@ import {
   getCurrentWorkout,
 } from "../features/workout/workoutSlice";
 import ExerciseCard from "../components/ExerciseCard";
+import TopNav from "../components/TopNav";
 
 const WorkoutContainer = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const CompleteButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 90%;
   align-self: center;
   /* letter-spacing: 1px; */
   border-radius: 10px;
@@ -37,7 +38,7 @@ const CompleteButton = styled.button`
 const Workouts = () => {
   const dispatch = useDispatch();
   const workout = useSelector((state) => state.workout.currentWorkout);
-
+  const [doneCounter, setDoneCounter] = useState(0);
   const handleFetchCurrentWorkout = () => {
     dispatch(getCurrentWorkout());
   };
@@ -59,9 +60,17 @@ const Workouts = () => {
         paddingBottom: "30px",
       }}
     >
+      <TopNav counter={doneCounter} length={workout?.exercises.length} />
       <WorkoutContainer>
-        {workout?.exercises.map((exercise, index) => {
-          return <ExerciseCard props={exercise} key={index} />;
+        {workout?.exercises?.map((exercise, index) => {
+          return (
+            <ExerciseCard
+              exercise={exercise}
+              setCounter={setDoneCounter}
+              counter={doneCounter}
+              key={index}
+            />
+          );
         })}
       </WorkoutContainer>
       <CompleteButton onClick={() => handleFinishWorkout()}>

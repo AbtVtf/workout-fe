@@ -31,7 +31,7 @@ const CenteredHeading = styled.h1`
   justify-content: center;
   text-align: center;
   font-family: "Roboto", sans-serif;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   /* white-space: nowrap; */
   /* overflow: hidden; */
   /* text-overflow: ellipsis; */
@@ -82,15 +82,16 @@ const CompleteButton = styled.button`
   font-weight: 700;
 `;
 
-const ExerciseCard = ({ props }) => {
+const ExerciseCard = ({ exercise, counter, setCounter }) => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
-  const workouts = useSelector((state) => state.workout.currentWorkout);
   const [weight, setWeight] = useState(0);
   const [isDone, setIsDone] = useState(false);
 
+  const { exercise_name, sets, reps, url, history, workout_id, exercise_id } =
+    exercise;
   const handleAddWeight = (workout_id, exercise_id) => {
     setIsDone(true);
+    setCounter(counter + 1);
     dispatch(
       addWeight({
         workout_id: workout_id,
@@ -103,7 +104,7 @@ const ExerciseCard = ({ props }) => {
   return (
     <>
       <ExerciseCardContainer>
-        <CenteredHeading>{props.exercise_name}</CenteredHeading>
+        <CenteredHeading>{exercise_name}</CenteredHeading>
         <Row>
           <div
             style={{
@@ -114,10 +115,10 @@ const ExerciseCard = ({ props }) => {
             }}
           >
             <span style={{ fontSize: "22px", fontWeight: 600 }}>
-              🎯 S: {props.sets}
+              🎯 S: {sets}
             </span>
             <span style={{ fontSize: "22px", fontWeight: 600 }}>
-              🔁 R: {props.reps}
+              🔁 R: {reps}
             </span>
             <div
               style={{
@@ -135,15 +136,15 @@ const ExerciseCard = ({ props }) => {
               />
             </div>
           </div>
-          <Image src={props.url} />
+          <Image src={url} />
         </Row>
         <Row>
-          {props.history.length > 0 ? (
+          {history?.length > 0 ? (
             <div>
               <h2>
                 🏋️ Last weight:{" "}
-                {props.history.map((historyObject, index) => {
-                  if (index + 1 === props.history.length) {
+                {history.map((historyObject, index) => {
+                  if (index + 1 === history.length) {
                     return <span>{historyObject.weight}</span>;
                   }
                 })}{" "}
@@ -156,7 +157,7 @@ const ExerciseCard = ({ props }) => {
         </Row>
 
         <CompleteButton
-          onClick={() => handleAddWeight(props.workout_id, props.exercise_id)}
+          onClick={() => handleAddWeight(workout_id, exercise_id)}
         >
           {isDone ? "👏Done & Dusted👏" : "Complete exercise"}
         </CompleteButton>

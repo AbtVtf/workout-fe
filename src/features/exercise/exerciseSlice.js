@@ -37,7 +37,6 @@ export const getPublicExercises = createAsyncThunk(
   "workout/getPublicExercises",
   async (_, { rejectWithValue }) => {
     try {
-      console.log("sec");
       const response = await apiCall(
         `${process.env.REACT_APP_API_BASE_URL}/api/exercises/public-exercises`
       );

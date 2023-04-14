@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserWorkouts, getWorkout } from "../features/workout/workoutSlice";
+import {
+  clearCurrent,
+  getUserWorkouts,
+  getWorkout,
+} from "../features/workout/workoutSlice";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
 // Import libraries
 
 // Import components
@@ -40,9 +43,6 @@ const Workouts = () => {
     dispatch(getUserWorkouts());
   }, []);
 
-  useEffect(() => {
-    console.log(userWorkouts);
-  }, [userWorkouts]);
   // Declare state and hooks
 
   // Declare functions
@@ -54,8 +54,8 @@ const Workouts = () => {
         display: "flex",
         flexDirection: "column",
         gap: "40px",
-        justifyContent: "center",
         alignItems: "center",
+        minHeight: "calc(100vh - 60px)",
       }}
     >
       <h1>Select a workout:</h1>
@@ -74,8 +74,13 @@ const Workouts = () => {
             <ExerciseCardContainer
               style={{ display: "flex" }}
               onClick={() => {
-                dispatch(getWorkout(workout.id));
-                navigate(`/workout/${workout.id}`);
+                try {
+                  dispatch(clearCurrent());
+                  dispatch(getWorkout(workout.id));
+                  navigate(`/workout/${workout.id}`);
+                } catch (error) {
+                  console.log(error);
+                }
               }}
             >
               <h2>{workout.name} </h2>

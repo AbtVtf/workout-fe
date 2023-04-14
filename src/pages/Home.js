@@ -6,7 +6,7 @@ import { addWeight, getCurrentWorkout } from "../features/workout/workoutSlice";
 import ExerciseCard from "../components/ExerciseCard";
 
 const HomeContainer = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   width: 100vw;
   display: flex;
   /* justify-content: center; */

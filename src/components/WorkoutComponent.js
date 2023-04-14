@@ -8,6 +8,7 @@ import {
 import ExerciseCard from "./ExerciseCard";
 import TopNav from "./TopNav";
 import { useNavigate } from "react-router-dom";
+import loader from "../assets/images/loader.gif";
 
 const WorkoutContainer = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const WorkoutContainer = styled.div`
   gap: 40px;
   align-items: center;
   padding: 30px 0;
-  /* height: ${window.innerHeight - 60}px; */
+  min-height: ${window.innerHeight - 60}px;
 `;
 
 const CompleteButton = styled.button`
@@ -41,6 +42,7 @@ const WorkoutComponent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const isLoading = useSelector((state) => state.workout.isLoading);
   const workout = useSelector((state) => state.workout.currentWorkout);
   const [doneCounter, setDoneCounter] = useState(0);
 
@@ -60,24 +62,32 @@ const WorkoutComponent = () => {
         flexDirection: "column",
         justifyContent: "center",
         paddingBottom: "30px",
+        minHeight: "calc(100vh - 60px)",
       }}
     >
-      <TopNav counter={doneCounter} length={workout?.exercises.length} />
-      <WorkoutContainer>
-        {workout?.exercises?.map((exercise, index) => {
-          return (
-            <ExerciseCard
-              exercise={exercise}
-              setCounter={setDoneCounter}
-              counter={doneCounter}
-              key={index}
-            />
-          );
-        })}
-      </WorkoutContainer>
-      <CompleteButton onClick={() => handleFinishWorkout()}>
-        👊 Finish Workout 👊
-      </CompleteButton>
+      {isLoading ? (
+        <img src={loader} style={{ borderRadius: "50%" }} />
+      ) : (
+        <>
+          {" "}
+          <TopNav counter={doneCounter} length={workout?.exercises.length} />
+          <WorkoutContainer>
+            {workout?.exercises?.map((exercise, index) => {
+              return (
+                <ExerciseCard
+                  exercise={exercise}
+                  setCounter={setDoneCounter}
+                  counter={doneCounter}
+                  key={index}
+                />
+              );
+            })}
+          </WorkoutContainer>
+          <CompleteButton onClick={() => handleFinishWorkout()}>
+            👊 Finish Workout 👊
+          </CompleteButton>
+        </>
+      )}
     </div>
   );
 };

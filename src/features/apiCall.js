@@ -4,7 +4,6 @@ import { refreshToken } from "./auth/authSlice";
 export async function apiCall(url, options = {}) {
   const state = store.getState();
   const token = state.auth.token;
-  console.log(state, token);
   if (!token) {
     throw new Error("Not authenticated");
   }
@@ -13,7 +12,6 @@ export async function apiCall(url, options = {}) {
     ...options.headers,
     Authorization: `${token}`,
   };
-  console.log("thr");
   const response = await fetch(url, options);
   if (response.status === 403) {
     try {

@@ -77,10 +77,6 @@ const CreateWorkout = () => {
     dispatch(getUserExercises());
   }, []);
 
-  useEffect(() => {
-    console.log(selectedExercises);
-  }, [selectedExercises]);
-
   return (
     <CreateExerciseContainer>
       <ExerciseCardContainer style={{ width: "80vw" }}>

@@ -179,6 +179,9 @@ const workoutSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    clearCurrent: (state) => {
+      state.currentWorkout = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -220,6 +223,10 @@ const workoutSlice = createSlice({
         state.isLoading = false;
         state.currentWorkout = action.payload;
         state.error = null;
+      })
+      .addCase(getWorkout.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
       });
   },
 });
@@ -228,6 +235,7 @@ export const {
   getCurrentWorkoutRequest,
   getCurrentWorkoutSuccess,
   getCurrentWorkoutFailure,
+  clearCurrent,
 } = workoutSlice.actions;
 
 export default workoutSlice.reducer;

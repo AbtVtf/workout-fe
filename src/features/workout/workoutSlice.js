@@ -4,6 +4,7 @@ import { apiCall } from "../apiCall";
 
 const initialState = {
   currentWorkout: null,
+  userWorkouts: null,
   isLoading: false,
   error: null,
 };
@@ -41,11 +42,55 @@ export const addWeight = createAsyncThunk(
 
 export const getCurrentWorkout = createAsyncThunk(
   "workout/getCurrentWorkout",
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      console.log("2");
       const response = await apiCall(
         `${process.env.REACT_APP_API_BASE_URL}/api/workouts/current`
+      );
+
+      if (!response.ok) {
+        throw new Error("Error fetching current workout");
+      }
+
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUserWorkouts = createAsyncThunk(
+  "workout/getUserWorkouts",
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      const response = await apiCall(
+        `${process.env.REACT_APP_API_BASE_URL}/api/workouts/user-workouts`
+      );
+
+      if (!response.ok) {
+        throw new Error("Error fetching current workout");
+      }
+
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getWorkout = createAsyncThunk(
+  "workout/getWorkout",
+  async (workout_id, { getState, rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/workout?workout_id=${workout_id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: getState().auth.token,
+          },
+        }
       );
 
       if (!response.ok) {
@@ -77,6 +122,37 @@ export const completeWorkout = createAsyncThunk(
 
       if (!response.ok) {
         throw new Error("Error completing workout");
+      }
+
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createWorkout = createAsyncThunk(
+  "exercise/createWorkout",
+  async (workout, { getState, rejectWithValue }) => {
+    try {
+      const response = await apiCall(
+        `${process.env.REACT_APP_API_BASE_URL}/api/workouts/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: getState().auth.token,
+          },
+          body: JSON.stringify({
+            name: workout.name,
+            isPublic: workout.isPublic,
+            exercises: workout.exercises,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Error creating workout");
       }
 
       return await response.json();
@@ -134,6 +210,16 @@ const workoutSlice = createSlice({
       .addCase(completeWorkout.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(getUserWorkouts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userWorkouts = action.payload;
+        state.error = null;
+      })
+      .addCase(getWorkout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentWorkout = action.payload;
+        state.error = null;
       });
   },
 });

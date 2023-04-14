@@ -1,87 +1,91 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  completeWorkout,
-  getCurrentWorkout,
-} from "../features/workout/workoutSlice";
-import ExerciseCard from "../components/ExerciseCard";
-import TopNav from "../components/TopNav";
+import { getUserWorkouts, getWorkout } from "../features/workout/workoutSlice";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const WorkoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  padding: 30px 0;
-`;
+// Import libraries
 
-const CompleteButton = styled.button`
-  height: 70px;
-  font-weight: 400;
-  font-size: 28px;
+// Import components
+
+// Import styles
+
+// Import interfaces/types
+
+const ExerciseCardContainer = styled.div`
+  width: 80vw;
   display: flex;
-  justify-content: center;
+  border: 1px solid black;
+  border-radius: 16px;
+  justify-content: space-between;
   align-items: center;
-  width: 90%;
-  align-self: center;
-  /* letter-spacing: 1px; */
+  /* padding: 20px 20px 50px 20px; */
+  /* background-color: #27496d; */
+  color: #262729;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: rgba(250, 238, 238, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: none;
-  background-color: #208a16;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  margin-bottom: "100px";
+  border: 1px solid #b1b3b5;
 `;
-
 const Workouts = () => {
-  const dispatch = useDispatch();
+  // Destructure props
   const navigate = useNavigate();
-
-  const workout = useSelector((state) => state.workout.currentWorkout);
-  const [doneCounter, setDoneCounter] = useState(0);
-  const handleFetchCurrentWorkout = () => {
-    dispatch(getCurrentWorkout());
-  };
-
-  const handleFinishWorkout = () => {
-    dispatch(completeWorkout(workout.workout_id));
-    dispatch(getCurrentWorkout());
-    navigate("/");
-  };
-
+  const dispatch = useDispatch();
+  const userWorkouts = useSelector((state) => state.workout.userWorkouts);
   useEffect(() => {
-    handleFetchCurrentWorkout();
-    window.scrollTo(0, 0);
+    dispatch(getUserWorkouts());
   }, []);
 
+  useEffect(() => {
+    console.log(userWorkouts);
+  }, [userWorkouts]);
+  // Declare state and hooks
+
+  // Declare functions
+
+  // Render component
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
+        gap: "40px",
         justifyContent: "center",
-        paddingBottom: "30px",
+        alignItems: "center",
       }}
     >
-      <TopNav counter={doneCounter} length={workout?.exercises.length} />
-      <WorkoutContainer>
-        {workout?.exercises?.map((exercise, index) => {
+      <h1>Select a workout:</h1>
+      <ExerciseCardContainer
+        style={{ display: "flex" }}
+        onClick={() => {
+          navigate(`/create-workout`);
+        }}
+      >
+        <h2>Create a workout</h2>
+        <h1>⚗️</h1>
+      </ExerciseCardContainer>
+      {userWorkouts?.length > 0 ? (
+        userWorkouts?.map((workout, index) => {
           return (
-            <ExerciseCard
-              exercise={exercise}
-              setCounter={setDoneCounter}
-              counter={doneCounter}
-              key={index}
-            />
+            <ExerciseCardContainer
+              style={{ display: "flex" }}
+              onClick={() => {
+                dispatch(getWorkout(workout.id));
+                navigate(`/workout/${workout.id}`);
+              }}
+            >
+              <h2>{workout.name} </h2>
+              <h1>▶️</h1>
+            </ExerciseCardContainer>
           );
-        })}
-      </WorkoutContainer>
-      <CompleteButton onClick={() => handleFinishWorkout()}>
-        👊 Finish Workout 👊
-      </CompleteButton>
+        })
+      ) : (
+        <h2>Looks Like you dont have any workouts creted</h2>
+      )}
     </div>
   );
 };

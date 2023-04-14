@@ -9,8 +9,8 @@ const HomeContainer = styled.div`
   min-height: 100vh;
   width: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
 `;
 
 const ExerciseCardContainer = styled.div`
@@ -47,7 +47,10 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <ExerciseCardContainer />
+      <h1 style={{}}>
+        Track your progress, access personalized workout plans, and stay
+        motivated with our easy-to-use gym app.
+      </h1>
     </HomeContainer>
   );
 };

@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { apiCall } from "../apiCall";
 
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await fetch(
+      const response = await apiCall(
         `${process.env.REACT_APP_API_BASE_URL}/api/users/register`,
         {
           method: "POST",

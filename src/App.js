@@ -7,6 +7,9 @@ import Workouts from "./pages/Workouts";
 import ParticlesBg from "particles-bg";
 import styled from "styled-components";
 import Layout from "./components/Layout";
+import WorkoutComponent from "./components/WorkoutComponent";
+import CreateExercise from "./pages/CreateExercise";
+import CreateWorkout from "./pages/CreateWorkout";
 // import Profile from "./components/Profile";
 
 function App() {
@@ -14,12 +17,12 @@ function App() {
     <div>
       <div
         style={{
-          position: "fixed", // Changed from absolute to fixed
+          position: "fixed",
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          zIndex: -1, // Add zIndex to keep particles container behind content
+          zIndex: -1,
         }}
       >
         <ParticlesBg type="cobweb" color="#0F58AE" />
@@ -29,7 +32,22 @@ function App() {
         <Routes>
           <Route path="/auth" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route
+            path="/create-exercise"
+            element={
+              <Layout>
+                <CreateExercise />
+              </Layout>
+            }
+          />
+          <Route
+            path="/create-workout"
+            element={
+              <Layout>
+                <CreateWorkout />
+              </Layout>
+            }
+          />
           <Route
             exact
             path="/"
@@ -44,6 +62,14 @@ function App() {
             element={
               <Layout>
                 <Workouts />
+              </Layout>
+            }
+          />
+          <Route
+            path="/workout/:id"
+            element={
+              <Layout>
+                <WorkoutComponent />
               </Layout>
             }
           />

@@ -1,5 +1,6 @@
 // src/features/workout/workoutSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { apiCall } from "../apiCall";
 
 const initialState = {
   currentWorkout: null,
@@ -15,7 +16,7 @@ export const addWeight = createAsyncThunk(
     { getState, rejectWithValue }
   ) => {
     try {
-      const response = await fetch(
+      const response = await apiCall(
         `${process.env.REACT_APP_API_BASE_URL}/api/workouts/weight`,
         {
           method: "POST",
@@ -42,14 +43,9 @@ export const getCurrentWorkout = createAsyncThunk(
   "workout/getCurrentWorkout",
   async (_, { getState, rejectWithValue }) => {
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/api/workouts/current`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: getState().auth.token,
-          },
-        }
+      console.log("2");
+      const response = await apiCall(
+        `${process.env.REACT_APP_API_BASE_URL}/api/workouts/current`
       );
 
       if (!response.ok) {
@@ -67,7 +63,7 @@ export const completeWorkout = createAsyncThunk(
   "workout/completeWorkout",
   async (workout_id, { getState, rejectWithValue }) => {
     try {
-      const response = await fetch(
+      const response = await apiCall(
         `${process.env.REACT_APP_API_BASE_URL}/api/workouts/complete`,
         {
           method: "POST",

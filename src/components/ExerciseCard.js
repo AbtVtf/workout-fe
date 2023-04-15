@@ -3,17 +3,15 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addWeight } from "../features/workout/workoutSlice";
 import {
-  ExerciseCardContainer,
-  CenteredHeading,
   Image,
   Row,
-  StatsContainer,
-  StatsText,
-  WeightContainer,
-  WeightInput,
+  Column,
+  Text,
   CompleteButton,
-  LastWeightHeading,
-} from "./_style";
+  Card,
+  Title,
+  TransparentInput,
+} from "../styles/styles";
 
 const ExerciseCard = ({ exercise, counter, setCounter }) => {
   const dispatch = useDispatch();
@@ -37,37 +35,35 @@ const ExerciseCard = ({ exercise, counter, setCounter }) => {
 
   return (
     <>
-      <ExerciseCardContainer>
-        <CenteredHeading>{exercise_name}</CenteredHeading>
+      <Card>
+        <Title>{exercise_name}</Title>
         <Row>
-          <StatsContainer>
-            <StatsText>🎯 S: {sets}</StatsText>
-            <StatsText>🔁 R: {reps}</StatsText>
-            <WeightContainer>
-              <StatsText>⚖️ W: </StatsText>
-              <WeightInput
+          <Column>
+            <Text>🎯 S: {sets}</Text>
+            <Text>🔁 R: {reps}</Text>
+            <Row>
+              <Text>⚖️ W: </Text>
+              <TransparentInput
                 value={weight}
                 onChange={(event) => setWeight(event.target.value)}
               />
-            </WeightContainer>
-          </StatsContainer>
+            </Row>
+          </Column>
           <Image src={url} />
         </Row>
         <Row>
           {history?.length > 0 ? (
-            <div>
-              <h2>
-                🏋️ Last weight:{" "}
-                {history.map((historyObject, index) => {
-                  if (index + 1 === history.length) {
-                    return <span key={index}>{historyObject.weight}</span>;
-                  }
-                })}{" "}
-                Kg
-              </h2>
-            </div>
+            <h2>
+              🏋️ Last weight:{" "}
+              {history.map((historyObject, index) => {
+                if (index + 1 === history.length) {
+                  return <span key={index}>{historyObject.weight}</span>;
+                }
+              })}{" "}
+              Kg
+            </h2>
           ) : (
-            <LastWeightHeading>No recorded weight</LastWeightHeading>
+            <Title>No recorded weight</Title>
           )}
         </Row>
 
@@ -76,7 +72,7 @@ const ExerciseCard = ({ exercise, counter, setCounter }) => {
         >
           {isDone ? "👏Done & Dusted👏" : "Complete exercise"}
         </CompleteButton>
-      </ExerciseCardContainer>
+      </Card>
     </>
   );
 };

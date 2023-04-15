@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../features/auth/authSlice";
+import {
+  CompleteButton,
+  PageContainer,
+  TransparentInput,
+} from "../styles/styles";
 
 const Card = styled.div`
   width: 300px;
@@ -52,28 +57,28 @@ const Register = () => {
   };
 
   return (
-    <Card>
+    <PageContainer>
       <h2>Register</h2>
       <Form onSubmit={handleSubmit}>
-        <Input
+        <TransparentInput
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
           required
         />
-        <Input
+        <TransparentInput
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
         />
-        <Button type="submit">Register</Button>
+        <CompleteButton type="submit">Register</CompleteButton>
       </Form>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-    </Card>
+    </PageContainer>
   );
 };
 

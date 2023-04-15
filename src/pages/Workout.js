@@ -5,10 +5,11 @@ import {
   completeWorkout,
   getCurrentWorkout,
 } from "../features/workout/workoutSlice";
-import ExerciseCard from "./ExerciseCard";
-import TopNav from "./TopNav";
+import ExerciseCard from "../components/ExerciseCard";
+import TopNav from "../components/TopNav";
 import { useNavigate } from "react-router-dom";
 import loader from "../assets/images/loader.gif";
+import { CompleteButton, Image, PageContainer } from "../styles/styles";
 
 const WorkoutContainer = styled.div`
   display: flex;
@@ -19,26 +20,7 @@ const WorkoutContainer = styled.div`
   min-height: ${window.innerHeight - 60}px;
 `;
 
-const CompleteButton = styled.button`
-  height: 70px;
-  font-weight: 400;
-  font-size: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  align-self: center;
-  /* letter-spacing: 1px; */
-  border-radius: 10px;
-  border: none;
-  background-color: #208a16;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  margin-bottom: "100px";
-`;
-
-const WorkoutComponent = () => {
+const Workout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -56,17 +38,9 @@ const WorkoutComponent = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        paddingBottom: "30px",
-        minHeight: "calc(100vh - 60px)",
-      }}
-    >
+    <PageContainer>
       {isLoading ? (
-        <img src={loader} style={{ borderRadius: "50%" }} />
+        <Image src={loader} />
       ) : (
         <>
           {" "}
@@ -88,8 +62,8 @@ const WorkoutComponent = () => {
           </CompleteButton>
         </>
       )}
-    </div>
+    </PageContainer>
   );
 };
 
-export default WorkoutComponent;
+export default Workout;

@@ -1,26 +1,14 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import BottomNavbar from "./BottomNav";
-
-const LayoutContainer = styled.div`
-  position: relative;
-  min-height: 100vh;
-`;
-
-const NavbarWrapper = styled.div`
-  position: sticky;
-  bottom: 0;
-`;
+import React from "react";
+import { LayoutContainer, NavbarWrapper } from "../styles/styles";
+import Navbar from "./Navbar";
 
 const Layout = ({ children }) => {
   return (
     <LayoutContainer>
+      <NavbarWrapper>
+        <Navbar />
+      </NavbarWrapper>
       {children}
-      {!window.location.href.split("/").includes("auth") && (
-        <NavbarWrapper>
-          <BottomNavbar />
-        </NavbarWrapper>
-      )}
     </LayoutContainer>
   );
 };

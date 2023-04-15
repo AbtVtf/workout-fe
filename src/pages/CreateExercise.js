@@ -1,35 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import ImageUploader from "../components/ImageUploader";
 import { createExercise } from "../features/exercise/exerciseSlice";
 import { useNavigate } from "react-router-dom";
-
-const CreateExerciseContainer = styled.div`
-  min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-const ExerciseCardContainer = styled.div`
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid black;
-  border-radius: 16px;
-  padding: 20px 20px 50px 20px;
-  color: #262729;
-  background: rgba(250, 238, 238, 0.45);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border-radius: 10px;
-  border: 1px solid #b1b3b5;
-  gap: 30px;
-`;
+import BottomNavbar from "../components/Navbar";
+import {
+  Card,
+  CompleteButton,
+  PageContainer,
+  TransparentInput,
+} from "../styles/styles";
 
 const Image = styled.img`
   min-width: 170px;
@@ -47,23 +27,30 @@ const Input = styled.input`
   width: 100%;
 `;
 
-const CompleteButton = styled.label`
-  height: 30px;
-  font-weight: 400;
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 170px;
-  align-self: center;
-  /* letter-spacing: 1px; */
-  border-radius: 10px;
-  border: none;
-  background-color: #208a16;
-  color: white;
-  font-family: "Roboto", sans-serif;
+const Label = styled.span`
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: 1.2px;
+`;
+
+const ImageLabel = styled(Label)`
+  height: 170px;
+  display: flex;
+  align-items: center;
+`;
+
+const ImageInput = styled(Input)`
+  margin-left: 10px;
+`;
+
+const PublicLabel = styled(Label)`
+  display: flex;
+  align-items: center;
+`;
+
+const PublicCheckbox = styled.span`
+  font-size: 26px;
+  margin-left: 5px;
+  cursor: pointer;
 `;
 
 const CreateExercise = () => {
@@ -89,36 +76,33 @@ const CreateExercise = () => {
   };
 
   return (
-    <CreateExerciseContainer>
-      <ExerciseCardContainer>
-        <span style={{ fontSize: "20px", fontWeight: 600 }}>
-          Exercise Name:
-        </span>
-        <Input value={name} onChange={(event) => setName(event.target.value)} />
+    <PageContainer>
+      <Card>
+        <Label>Exercise Name:</Label>
+        <TransparentInput
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
 
-        <div style={{ height: "170px", display: "flex", alignItems: "center" }}>
-          {" "}
+        <ImageLabel>
+          Image Url:
           {postImage === null ? (
-            <>
-              <span style={{ fontSize: "20px", fontWeight: 600 }}>
-                Image Url:
-              </span>
-              <Input
-                value={postImage}
-                onChange={(event) => setPostImage(event.target.value)}
-              />
-            </>
+            <TransparentInput
+              value={postImage}
+              onChange={(event) => setPostImage(event.target.value)}
+            />
           ) : (
             <Image src={postImage} />
           )}
-        </div>
-        <span style={{ fontSize: "20px", fontWeight: 600 }}>
-          {`Set Public: `}
-          <span
-            style={{ fontSize: "26px" }}
-            onClick={() => setIsPublic(!isPublic)}
-          >{`${isPublic ? "✔️" : "⛔"}`}</span>
-        </span>
+        </ImageLabel>
+
+        <PublicLabel>
+          Set Public:
+          <PublicCheckbox onClick={() => setIsPublic(!isPublic)}>{`${
+            isPublic ? "✔️" : "⛔"
+          }`}</PublicCheckbox>
+        </PublicLabel>
+
         <CompleteButton
           onClick={() => {
             handleCreateExercise();
@@ -126,8 +110,8 @@ const CreateExercise = () => {
         >
           Create Exercise
         </CompleteButton>
-      </ExerciseCardContainer>
-    </CreateExerciseContainer>
+      </Card>
+    </PageContainer>
   );
 };
 

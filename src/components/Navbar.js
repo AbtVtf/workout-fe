@@ -6,12 +6,12 @@ import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 import {
   NavbarContainer,
-  NavbarItem,
-  LogoContainer,
+  CenterWrapper,
   LogoImage,
-} from "./_style";
+  Title,
+} from "../styles/styles";
 
-const BottomNavbar = () => {
+const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,19 +21,13 @@ const BottomNavbar = () => {
   };
   return (
     <NavbarContainer>
-      <NavbarItem onClick={() => navigate("/")}>
-        <h1>Home</h1>
-      </NavbarItem>
-      <NavbarItem>
-        <LogoContainer onClick={() => navigate("/workouts")}>
-          <LogoImage src={icon} />
-        </LogoContainer>
-      </NavbarItem>
-      <NavbarItem onClick={handleSingOut}>
-        <h1>Sign Out</h1>
-      </NavbarItem>
+      <Title onClick={() => navigate("/")}>Home</Title>
+      <CenterWrapper onClick={() => navigate("/workouts")}>
+        <LogoImage src={icon} />
+      </CenterWrapper>
+      <Title onClick={handleSingOut}>Sign Out</Title>
     </NavbarContainer>
   );
 };
 
-export default BottomNavbar;
+export default Navbar;

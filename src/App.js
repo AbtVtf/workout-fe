@@ -5,28 +5,18 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Workouts from "./pages/Workouts";
 import ParticlesBg from "particles-bg";
-import styled from "styled-components";
 import Layout from "./components/Layout";
-import WorkoutComponent from "./components/WorkoutComponent";
 import CreateExercise from "./pages/CreateExercise";
 import CreateWorkout from "./pages/CreateWorkout";
-// import Profile from "./components/Profile";
+import Workout from "./pages/Workout";
+import { AppBackground } from "./styles/styles";
 
 function App() {
   return (
-    <div>
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: -1,
-        }}
-      >
-        <ParticlesBg type="cobweb" color="#0F58AE" />
-      </div>
+    <>
+      <AppBackground>
+        {/* <ParticlesBg type="cobweb" color="#0F58AE" /> */}
+      </AppBackground>
 
       <Router>
         <Routes>
@@ -69,14 +59,29 @@ function App() {
             path="/workout/:id"
             element={
               <Layout>
-                <WorkoutComponent />
+                <Workout />
               </Layout>
             }
           />
-          {/* <Route path="/profile" component={Profile} />*/}
+          <Route
+            path="*"
+            element={
+              <div>
+                <h1>
+                  Woah, you accidentally discovered an easter egg
+                  <br />
+                  Enjoy your free membership!
+                  <br />
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                    Ding ding ding
+                  </a>{" "}
+                </h1>
+              </div>
+            }
+          />
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 

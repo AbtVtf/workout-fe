@@ -77,7 +77,7 @@ const CreateExercise = () => {
 
   return (
     <PageContainer>
-      <Card>
+      <Card style={{ marginTop: "20px" }}>
         <Label>Exercise Name:</Label>
         <TransparentInput
           value={name}

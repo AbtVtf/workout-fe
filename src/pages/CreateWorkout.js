@@ -50,7 +50,7 @@ const CreateWorkout = () => {
 
   return (
     <PageContainer>
-      <Card>
+      <Card style={{ marginTop: "20px" }}>
         <Title>Customize your own Workout</Title>
         <TransparentInput
           placeholder="Workout Name"

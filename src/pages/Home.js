@@ -39,8 +39,8 @@ const Home = () => {
         style={{ cursor: "pointer" }}
       >
         <Horizontal>
-          <Subtitle>Create a workout</Subtitle>
-          <Icon src={task} />
+          <Title>Create a workout</Title>
+          <Icon src={start} />{" "}
         </Horizontal>
       </Card>
       <Card
@@ -50,8 +50,8 @@ const Home = () => {
         style={{ cursor: "pointer" }}
       >
         <Horizontal>
-          <Subtitle>Create an exercise</Subtitle>
-          <Icon src={task} />
+          <Title>Create an exercise</Title>
+          <Icon src={start} />{" "}
         </Horizontal>
       </Card>
       <Card onClick={handleGetStarted} style={{ cursor: "pointer" }}>

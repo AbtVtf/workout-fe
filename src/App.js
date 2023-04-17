@@ -15,7 +15,18 @@ function App() {
   return (
     <>
       <AppBackground>
-        <ParticlesBg type="cobweb" color="#0F58AE" />
+        <div
+          style={{
+            height: "500px",
+            zIndex: "2",
+            position: "relative",
+            width: "100%",
+            height: `${window.innerHeight}px`,
+            backgroundColor: "#141414",
+          }}
+        >
+          <ParticlesBg type="cobweb" color="#00a616" />
+        </div>
       </AppBackground>
 
       <Router>

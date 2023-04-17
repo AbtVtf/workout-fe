@@ -7,52 +7,13 @@ import BottomNavbar from "../components/Navbar";
 import {
   Card,
   CompleteButton,
+  Horizontal,
+  Image,
   PageContainer,
+  Title,
   TransparentInput,
 } from "../styles/styles";
 import Modal from "../components/Modal";
-
-const Image = styled.img`
-  min-width: 170px;
-  height: 170px;
-  width: 170px;
-  border-radius: 20%;
-  margin-bottom: 10px;
-  border: 1px solid #666869;
-`;
-
-const Input = styled.input`
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid black;
-  width: 100%;
-`;
-
-const Label = styled.span`
-  font-size: 20px;
-  font-weight: 600;
-`;
-
-const ImageLabel = styled(Label)`
-  height: 170px;
-  display: flex;
-  align-items: center;
-`;
-
-const ImageInput = styled(Input)`
-  margin-left: 10px;
-`;
-
-const PublicLabel = styled(Label)`
-  display: flex;
-  align-items: center;
-`;
-
-const PublicCheckbox = styled.span`
-  font-size: 26px;
-  margin-left: 5px;
-  cursor: pointer;
-`;
 
 const CreateExercise = () => {
   const dispatch = useDispatch();
@@ -80,14 +41,14 @@ const CreateExercise = () => {
   return (
     <PageContainer>
       <Card style={{ marginTop: "20px" }}>
-        <Label>Exercise Name:</Label>
+        <Title>Exercise Name:</Title>
         <TransparentInput
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
 
-        <ImageLabel>
-          Image Url:
+        <Horizontal>
+          <Title>Image Url:</Title>
           {postImage === null ? (
             <TransparentInput
               value={postImage}
@@ -96,14 +57,14 @@ const CreateExercise = () => {
           ) : (
             <Image src={postImage} />
           )}
-        </ImageLabel>
+        </Horizontal>
 
-        <PublicLabel>
+        <Title>
           Set Public:
-          <PublicCheckbox onClick={() => setIsPublic(!isPublic)}>{`${
+          <Title onClick={() => setIsPublic(!isPublic)}>{`${
             isPublic ? "✔️" : "⛔"
-          }`}</PublicCheckbox>
-        </PublicLabel>
+          }`}</Title>
+        </Title>
 
         <CompleteButton
           onClick={() => {

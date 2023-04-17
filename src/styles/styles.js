@@ -1,10 +1,13 @@
 import styled, { keyframes } from "styled-components";
 
 const Glassmorph = `
-background: rgba(255, 255, 255, 0.6);
-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-backdrop-filter: blur(4px);
--webkit-backdrop-filter: blur(4px);
+/* From https://css.glass */
+background: rgba(134, 168, 127, 0.36);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.8px);
+-webkit-backdrop-filter: blur(2.8px);
+border: 1px solid rgba(134, 168, 127, 0.28);
 `;
 
 const marginBottom = "0px";
@@ -16,7 +19,7 @@ const gap = "15px";
 // -webkit-backdrop-filter: blur( 15px );
 // `;
 
-const TextColor = "black";
+const TextColor = "white";
 
 export const AppBackground = styled.div`
   position: fixed;

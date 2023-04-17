@@ -12,7 +12,7 @@ const Container = styled.div`
   position: relative;
   border-radius: 5px;
   overflow: hidden;
-  background-color: #f7f7f7;
+  background-color: grey;
   box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
     inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
 `;
@@ -74,7 +74,7 @@ const Input = styled.input`
   background-color: transparent;
   border: none;
   outline: none;
-  color: black;
+  color: white;
   padding: 0.5rem;
   font-size: 0.75rem;
   border-radius: 5px;

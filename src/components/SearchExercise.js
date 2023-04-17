@@ -9,7 +9,6 @@ import {
   Title,
   TransparentInput,
 } from "../styles/styles";
-
 const SearchExercise = ({
   publicExercises,
   userExercises,
@@ -67,6 +66,7 @@ const SearchExercise = ({
                     setText(event.label);
                   }}
                   placeholder="Select a public exercise"
+                  className="myClassName"
                 />
               ) : (
                 <>
@@ -89,6 +89,7 @@ const SearchExercise = ({
                   )}
                 </>
               )}
+              
               <Dropdown
                 options={userExercises?.map((element) => {
                   return { value: element.id, label: element.name };

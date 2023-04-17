@@ -5,73 +5,114 @@ import { addWeight } from "../features/workout/workoutSlice";
 import {
   Image,
   Row,
-  Column,
-  Text,
   CompleteButton,
-  Card,
+  ExCard,
   Title,
   TransparentInput,
+  Horizontal,
+  Icon,
+  ImageWrapper,
+  Subtitle,
+  Column,
+  WeightWrapper,
+  Shaker,
+  IconNumber,
+  Card,
 } from "../styles/styles";
+import weightIcon from "../assets/images/weight.png";
+import setsIcon from "../assets/images/counter.png";
+import repeatIcon from "../assets/images/repeat.png";
+import historyIcon from "../assets/images/history.png";
+import logo from "../assets/images/logo512.png";
 
 const ExerciseCard = ({ exercise, counter, setCounter }) => {
   const dispatch = useDispatch();
   const [weight, setWeight] = useState(0);
   const [isDone, setIsDone] = useState(false);
-
+  const [noWeight, setNoWeight] = useState(false);
   const { exercise_name, sets, reps, url, history, workout_id, exercise_id } =
     exercise;
 
   const handleAddWeight = (workout_id, exercise_id) => {
-    setIsDone(true);
-    setCounter(counter + 1);
-    dispatch(
-      addWeight({
-        workout_id: workout_id,
-        exercise_id: exercise_id,
-        weight: weight,
-      })
-    );
+    if (weight === 0) {
+      setNoWeight(true);
+    }
+    // setIsDone(true);
+    // setCounter(counter + 1);
+    // dispatch(
+    //   addWeight({
+    //     workout_id: workout_id,
+    //     exercise_id: exercise_id,
+    //     weight: weight,
+    //   })
+    // );
   };
 
   return (
     <>
       <Card>
-        <Title>{exercise_name}</Title>
-        <Row>
-          <Column>
-            <Text>🎯 S: {sets}</Text>
-            <Text>🔁 R: {reps}</Text>
-            <Row>
-              <Text>⚖️ W: </Text>
-              <TransparentInput
-                value={weight}
-                onChange={(event) => setWeight(event.target.value)}
-              />
-            </Row>
-          </Column>
-          <Image src={url} />
-        </Row>
-        <Row>
-          {history?.length > 0 ? (
-            <h2>
-              🏋️ Last weight:{" "}
-              {history.map((historyObject, index) => {
-                if (index + 1 === history.length) {
-                  return <span key={index}>{historyObject.weight}</span>;
-                }
-              })}{" "}
-              Kg
-            </h2>
-          ) : (
-            <Title>No recorded weight</Title>
-          )}
-        </Row>
+        <Horizontal>
+          <Title style={{ borderBottom: "1px solid black" }}>
+            {exercise_name}
+          </Title>
+        </Horizontal>
 
-        <CompleteButton
-          onClick={() => handleAddWeight(workout_id, exercise_id)}
-        >
-          {isDone ? "👏Done & Dusted👏" : "Complete exercise"}
-        </CompleteButton>
+        <Horizontal>
+          <Column style={{ maxWidth: "150px" }}>
+            <IconNumber>
+              <Icon src={setsIcon} /> <Title>{sets}</Title>
+            </IconNumber>
+            <IconNumber>
+              <Icon src={repeatIcon} /> <Title>{reps}</Title>
+            </IconNumber>
+            {history?.length > 0 ? (
+              <IconNumber>
+                <Icon src={historyIcon} />{" "}
+                {history.map((historyObject, index) => {
+                  if (index + 1 === history.length) {
+                    return <Title key={index}> {historyObject.weight}</Title>;
+                  }
+                })}
+              </IconNumber>
+            ) : (
+              <IconNumber>
+                <Icon src={historyIcon} /> <Title>- - -</Title>
+              </IconNumber>
+            )}
+            {noWeight ? (
+              <Shaker onClick={() => setNoWeight(false)}>
+                <Icon src={weightIcon} />
+                <TransparentInput
+                  style={{ fontWeight: 700, fontSize: "26px", width: "50px" }}
+                  value={weight}
+                  onChange={(event) => {
+                    setWeight(event.target.value);
+                  }}
+                />
+              </Shaker>
+            ) : (
+              <Horizontal>
+                <Icon src={weightIcon} />
+                <TransparentInput
+                  style={{ fontWeight: 700, fontSize: "26px", width: "50px" }}
+                  value={weight}
+                  onChange={(event) => setWeight(event.target.value)}
+                />
+              </Horizontal>
+            )}
+          </Column>
+          <Column style={{ gap: "20px" }}>
+            <ImageWrapper>
+              <Image src={url ? url : logo} />
+            </ImageWrapper>
+            <CompleteButton
+              onClick={() => handleAddWeight(workout_id, exercise_id)}
+              disabled={isDone}
+            >
+              {isDone ? "Exercise Completed" : "Complete Exercise"}
+            </CompleteButton>
+          </Column>
+        </Horizontal>
       </Card>
     </>
   );

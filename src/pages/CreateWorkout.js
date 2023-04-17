@@ -67,16 +67,18 @@ const CreateWorkout = () => {
         </Text>
       </Card>
 
-      {Array.from({ length: number }, (v, i) => i).map((index) => {
-        return (
-          <SearchExercise
-            publicExercises={publicExercises}
-            userExercises={userExercises}
-            setSelectedExercises={setSelectedExercises}
-            selectedExercises={selectedExercises}
-          />
-        );
-      })}
+      <div style={{ zIndex: "1000" }}>
+        {Array.from({ length: number }, (v, i) => i).map((index) => {
+          return (
+            <SearchExercise
+              publicExercises={publicExercises}
+              userExercises={userExercises}
+              setSelectedExercises={setSelectedExercises}
+              selectedExercises={selectedExercises}
+            />
+          );
+        })}
+      </div>
 
       <Card>
         <Text

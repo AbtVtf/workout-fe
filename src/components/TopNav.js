@@ -1,18 +1,20 @@
 import React from "react";
-import styled from "styled-components";
 import empty from "../assets/images/dumbbell-empty.png";
 import full from "../assets/images/dumbbell-full.png";
+import { Icon, LogoImage, NavbarContainer } from "../styles/styles";
+import back from "../assets/images/back.png";
 import { useNavigate } from "react-router-dom";
-import { LogoImage, NavbarContainer } from "../styles/styles";
 
 const TopNav = ({ counter, length }) => {
+  const navigate = useNavigate();
   return (
     <NavbarContainer>
+      <Icon src={back} onClick={() => navigate(-1)} />
       {Array.from({ length }).map((_, index) => {
         if (index < counter) {
-          return <LogoImage src={full} key={`full-${index}`} />;
+          return <Icon src={full} key={`full-${index}`} />;
         } else {
-          return <LogoImage src={empty} key={`empty-${index}`} />;
+          return <Icon src={empty} key={`empty-${index}`} />;
         }
       })}
     </NavbarContainer>

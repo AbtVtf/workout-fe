@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 const Layout = ({ children }) => {
   return (
     <LayoutContainer>
-      <NavbarWrapper>
+      <NavbarWrapper style={{ zIndex: 10 }}>
         <Navbar />
       </NavbarWrapper>
       {children}

@@ -7,7 +7,16 @@ import {
 } from "../features/workout/workoutSlice";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { Card, PageContainer, Subtitle, Title } from "../styles/styles";
+import {
+  Card,
+  Horizontal,
+  Icon,
+  PageContainer,
+  Subtitle,
+  Title,
+} from "../styles/styles";
+import task from "../assets/images/task.png";
+import start from "../assets/images/start.png";
 
 // Import libraries
 
@@ -26,6 +35,10 @@ const Workouts = () => {
     dispatch(getUserWorkouts());
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Declare state and hooks
 
   // Declare functions
@@ -34,14 +47,7 @@ const Workouts = () => {
   return (
     <PageContainer>
       <Title>Select a workout:</Title>
-      <Card
-        onClick={() => {
-          navigate(`/create-workout`);
-        }}
-      >
-        <Subtitle>Create a workout</Subtitle>
-        <Title>⚗️</Title>
-      </Card>
+
       {userWorkouts?.length > 0 ? (
         userWorkouts?.map((workout, index) => {
           return (
@@ -56,8 +62,10 @@ const Workouts = () => {
                 }
               }}
             >
-              <Subtitle>{workout.name} </Subtitle>
-              <Title>▶️</Title>
+              <Horizontal>
+                <Subtitle>{workout.name} </Subtitle>
+                <Icon src={start} />
+              </Horizontal>
             </Card>
           );
         })

@@ -4,18 +4,18 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Workouts from "./pages/Workouts";
-import ParticlesBg from "particles-bg";
 import Layout from "./components/Layout";
 import CreateExercise from "./pages/CreateExercise";
 import CreateWorkout from "./pages/CreateWorkout";
 import Workout from "./pages/Workout";
 import { AppBackground } from "./styles/styles";
+import ParticlesBg from "particles-bg";
 
 function App() {
   return (
     <>
       <AppBackground>
-        {/* <ParticlesBg type="cobweb" color="#0F58AE" /> */}
+        <ParticlesBg type="cobweb" color="#0F58AE" />
       </AppBackground>
 
       <Router>
@@ -55,14 +55,8 @@ function App() {
               </Layout>
             }
           />
-          <Route
-            path="/workout/:id"
-            element={
-              <Layout>
-                <Workout />
-              </Layout>
-            }
-          />
+          <Route path="/workout/:id" element={<Workout />} />
+          <Route path="/workout" element={<Workout />} />
           <Route
             path="*"
             element={

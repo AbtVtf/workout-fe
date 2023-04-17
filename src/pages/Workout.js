@@ -57,8 +57,11 @@ const Workout = () => {
               );
             })}
           </WorkoutContainer>
-          <CompleteButton onClick={() => handleFinishWorkout()}>
-            👊 Finish Workout 👊
+          <CompleteButton
+            onClick={() => handleFinishWorkout()}
+            style={{ width: "90%", fontSize: "30px" }}
+          >
+            Finish Workout
           </CompleteButton>
         </>
       )}

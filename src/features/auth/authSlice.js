@@ -4,8 +4,9 @@ import { apiCall } from "../apiCall";
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, { rejectWithValue }) => {
+    console.log("first");
     try {
-      const response = await apiCall(
+      const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/api/users/register`,
         {
           method: "POST",
@@ -114,6 +115,7 @@ const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.isAuthenticated = false;
+      state.refreshToken = null;
     },
     updateAccessToken: (state, action) => {
       state.token = action.payload;

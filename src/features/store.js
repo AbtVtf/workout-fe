@@ -7,7 +7,7 @@ import rootReducer from "./rootReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"], // Replace 'auth' with the name of the slice you want to persist
+  whitelist: ["auth", "workout"], // Replace 'auth' with the name of the slice you want to persist
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

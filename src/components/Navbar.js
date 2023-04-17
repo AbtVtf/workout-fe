@@ -9,8 +9,10 @@ import {
   CenterWrapper,
   LogoImage,
   Title,
+  Icon,
 } from "../styles/styles";
-
+import logoutIcon from "../assets/images/log-out.png";
+import homeIcon from "../assets/images/home.png";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,11 +23,12 @@ const Navbar = () => {
   };
   return (
     <NavbarContainer>
-      <Title onClick={() => navigate("/")}>Home</Title>
+      <Icon onClick={() => navigate("/")} src={homeIcon} />
+
       <CenterWrapper onClick={() => navigate("/workouts")}>
         <LogoImage src={icon} />
       </CenterWrapper>
-      <Title onClick={handleSingOut}>Sign Out</Title>
+      <Icon onClick={handleSingOut} src={logoutIcon} />
     </NavbarContainer>
   );
 };

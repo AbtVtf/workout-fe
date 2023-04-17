@@ -13,6 +13,7 @@ import {
   Title,
   TransparentInput,
 } from "../styles/styles";
+import Modal from "../components/Modal";
 
 const CreateWorkout = () => {
   const dispatch = useDispatch();
@@ -27,13 +28,14 @@ const CreateWorkout = () => {
   const [name, setName] = useState("");
   const [isPublic, setIsPublic] = useState(false);
   const [number, setNumber] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(getPublicExercises());
     dispatch(getUserExercises());
   }, []);
 
-  const handleCreateExercise = () => {
+  const handleCreateWorkout = () => {
     try {
       dispatch(
         createWorkout({
@@ -42,7 +44,7 @@ const CreateWorkout = () => {
           exercises: selectedExercises,
         })
       );
-      navigate("/");
+      setShowModal(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -66,7 +68,6 @@ const CreateWorkout = () => {
           }`}</Text>
         </Text>
       </Card>
-
       <div style={{ zIndex: "1000" }}>
         {Array.from({ length: number }, (v, i) => i).map((index) => {
           return (
@@ -79,7 +80,6 @@ const CreateWorkout = () => {
           );
         })}
       </div>
-
       <Card>
         <Text
           onClick={() => {
@@ -89,10 +89,10 @@ const CreateWorkout = () => {
           Add another exercise ➕
         </Text>
       </Card>
-
       <Card>
-        <Text onClick={handleCreateExercise}>Complete Workout</Text>
+        <Text onClick={handleCreateWorkout}>Complete Workout</Text>
       </Card>
+      {showModal && <Modal text={"Workout successfully created"} />}{" "}
     </PageContainer>
   );
 };

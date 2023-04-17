@@ -65,6 +65,7 @@ export const PageContainer = styled.div`
   align-items: center;
   gap: ${gap};
   padding-bottom: 40px;
+  /* height: ${window.innerHeight}px; */
 `;
 
 export const AuthContainer = styled.div`
@@ -292,4 +293,18 @@ export const IconNumber = styled.div`
   width: 100%;
   display: flex;
   gap: 5px;
+`;
+
+export const ModalContainer = styled.div`
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 `;

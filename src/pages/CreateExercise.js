@@ -59,6 +59,7 @@ const CreateExercise = () => {
   const [name, setName] = useState("");
   const [isPublic, setIsPublic] = useState(false);
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const handleCreateExercise = () => {
     try {
@@ -69,7 +70,7 @@ const CreateExercise = () => {
           isPublic: isPublic ? 1 : 0,
         })
       );
-      navigate("/auth");
+      setShowModal(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -111,6 +112,7 @@ const CreateExercise = () => {
           Create Exercise
         </CompleteButton>
       </Card>
+      {showModal && <Modal text={"Exercise successfully created"} />}
     </PageContainer>
   );
 };

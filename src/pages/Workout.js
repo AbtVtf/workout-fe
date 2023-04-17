@@ -10,6 +10,7 @@ import TopNav from "../components/TopNav";
 import { useNavigate } from "react-router-dom";
 import loader from "../assets/images/loader.gif";
 import { CompleteButton, Image, PageContainer } from "../styles/styles";
+import Modal from "../components/Modal";
 
 const WorkoutContainer = styled.div`
   display: flex;
@@ -27,10 +28,11 @@ const Workout = () => {
   const isLoading = useSelector((state) => state.workout.isLoading);
   const workout = useSelector((state) => state.workout.currentWorkout);
   const [doneCounter, setDoneCounter] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const handleFinishWorkout = () => {
     dispatch(completeWorkout(workout.workout_id));
-    navigate("/");
+    setShowModal(true);
   };
 
   useEffect(() => {
@@ -65,6 +67,7 @@ const Workout = () => {
           </CompleteButton>
         </>
       )}
+      {showModal && <Modal text={"Workout Completed"} />}
     </PageContainer>
   );
 };

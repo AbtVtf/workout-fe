@@ -36,16 +36,17 @@ const ExerciseCard = ({ exercise, counter, setCounter }) => {
   const handleAddWeight = (workout_id, exercise_id) => {
     if (weight === 0) {
       setNoWeight(true);
+    } else {
+      setIsDone(true);
+      setCounter(counter + 1);
+      dispatch(
+        addWeight({
+          workout_id: workout_id,
+          exercise_id: exercise_id,
+          weight: weight,
+        })
+      );
     }
-    // setIsDone(true);
-    // setCounter(counter + 1);
-    // dispatch(
-    //   addWeight({
-    //     workout_id: workout_id,
-    //     exercise_id: exercise_id,
-    //     weight: weight,
-    //   })
-    // );
   };
 
   return (

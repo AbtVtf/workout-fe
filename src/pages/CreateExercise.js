@@ -10,6 +10,7 @@ import {
   PageContainer,
   TransparentInput,
 } from "../styles/styles";
+import Modal from "../components/Modal";
 
 const Image = styled.img`
   min-width: 170px;

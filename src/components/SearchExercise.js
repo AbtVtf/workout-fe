@@ -3,7 +3,9 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import {
   Card,
+  Column,
   CompleteButton,
+  Horizontal,
   Subtitle,
   Text,
   Title,
@@ -47,13 +49,18 @@ const SearchExercise = ({
     <Card>
       {!isLocked ? (
         <>
-          <Text>Select or search an exercise:</Text>
-          <TransparentInput
-            type="text"
-            placeholder={text}
-            value={searchQuery || text}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+          {text ? (
+            <Title>{text}</Title>
+          ) : (
+            <>
+              <TransparentInput
+                type="text"
+                placeholder={"Select or search an exercise"}
+                value={searchQuery || text}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </>
+          )}
           {text === null && (
             <>
               {searchQuery === "" ? (
@@ -69,7 +76,14 @@ const SearchExercise = ({
                   className="myClassName"
                 />
               ) : (
-                <>
+                <Column
+                  style={{
+                    minHeight: "200px",
+                    maxHeight: "200px",
+                    overflowY: "scroll",
+                    gap: "10px",
+                  }}
+                >
                   {filteredExercises.length !== 0 ? (
                     filteredExercises.map((item) => {
                       return (
@@ -85,11 +99,11 @@ const SearchExercise = ({
                       );
                     })
                   ) : (
-                    <Text>No exercise found</Text>
+                    <Text style={{ width: "60vw" }}>No exercise found</Text>
                   )}
-                </>
+                </Column>
               )}
-              
+
               <Dropdown
                 options={userExercises?.map((element) => {
                   return { value: element.id, label: element.name };
@@ -104,20 +118,19 @@ const SearchExercise = ({
           )}
           {text !== null && (
             <>
-              <>
+              <Horizontal>
                 <Subtitle>Sets: </Subtitle>
                 <TransparentInput
                   value={sets}
                   onChange={(e) => setSets(e.target.value)}
                 />
-              </>
-              <>
+
                 <Subtitle>Reps: </Subtitle>
                 <TransparentInput
                   value={reps}
                   onChange={(e) => setReps(e.target.value)}
                 />
-              </>
+              </Horizontal>
               <CompleteButton onClick={handleLockIn}>Lock In</CompleteButton>
             </>
           )}
@@ -130,7 +143,10 @@ const SearchExercise = ({
                 setIsLocked(false);
                 setText(null);
                 setSearchQuery("");
+                setReps(0);
+                setSets(0);
               }}
+              style={{ position: "absolute", right: "15px", top: "10px" }}
             >
               ❌
             </Subtitle>

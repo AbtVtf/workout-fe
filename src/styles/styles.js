@@ -86,8 +86,8 @@ export const Title = styled.span`
 `;
 
 export const Subtitle = styled.span`
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   color: ${TextColor};
 `;
 
@@ -161,6 +161,9 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const CompleteButton = styled.button`

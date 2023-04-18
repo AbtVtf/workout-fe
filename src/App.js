@@ -17,7 +17,7 @@ function App() {
       <AppBackground>
         <div
           style={{
-            height: "500px",
+            // height: "500px",
             zIndex: "2",
             position: "relative",
             width: "100%",

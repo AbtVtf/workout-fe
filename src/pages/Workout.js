@@ -18,7 +18,7 @@ const WorkoutContainer = styled.div`
   gap: 40px;
   align-items: center;
   padding: 30px 0;
-  min-height: ${window.innerHeight - 60}px;
+  /* min-height: ${window.innerHeight - 60}px; */
 `;
 
 const Workout = () => {
@@ -32,6 +32,7 @@ const Workout = () => {
 
   const handleFinishWorkout = () => {
     dispatch(completeWorkout(workout.workout_id));
+    window.scrollTo(0, 0);
     setShowModal(true);
   };
 

@@ -24,7 +24,7 @@ function App() {
             backgroundColor: "#141414",
           }}
         >
-          <ParticlesBg type="cobweb" color="#00a616" />
+          {/* <ParticlesBg type="cobweb" color="#00a616" /> */}
         </div>
       </AppBackground>
 

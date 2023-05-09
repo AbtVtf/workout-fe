@@ -40,7 +40,7 @@ const Header = () => {
               <i class="ri-menu-line" onClick={toggleMenu}></i>
             </span>
             <div className="nav__right">
-              <div className="navigation" onClick={toggleMenu}>
+              <div className="navigation">
                 <div className="menu">
                   {navLinks.map((item, index) => (
                     <NavLink
@@ -49,6 +49,7 @@ const Header = () => {
                         navClass.isActive ? "nav__active nav__item" : "nav__item"
                       }
                       key={index}
+
                     >
                       {item.display}
                     </NavLink>

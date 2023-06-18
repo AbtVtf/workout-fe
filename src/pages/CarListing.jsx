@@ -17,7 +17,7 @@ const CarListing = () => {
 
   const fetchCars = async () => {
     try {
-      const response = await fetch('http://localhost:3000/cars');
+      const response = await fetch('https://auto-backend-node-production.up.railway.app/cars');
       if (response.ok) {
         const data = await response.json();
         console.log({ data })
@@ -40,7 +40,7 @@ const CarListing = () => {
 
 
             {carsData?.map((item) => (
-              <CarItem item={item} key={item.id} />
+              <CarItem item={item} key={item.id} isDelete={false} />
             ))}
           </Row>
         </Container>

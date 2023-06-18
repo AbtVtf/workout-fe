@@ -24,7 +24,7 @@ const Home = () => {
 
   const fetchCars = async () => {
     try {
-      const response = await fetch('http://localhost:3000/cars');
+      const response = await fetch('https://auto-backend-node-production.up.railway.app/cars');
       if (response.ok) {
         console.log(response)
         const data = await response.json();
@@ -54,7 +54,7 @@ const Home = () => {
             </Col>
 
             {carMock.length > 0 && carMock?.slice(0, 6).map((item) => (
-              <CarItem item={item} key={item.id} />
+              <CarItem item={item} key={item.id} isDelete={false} />
             ))}
           </Row>
         </Container>

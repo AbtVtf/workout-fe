@@ -44,13 +44,16 @@ function CarEditor() {
     event.preventDefault();
     console.log(car);
     try {
-      const response = await fetch("http://localhost:3000/cars", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(car),
-      });
+      const response = await fetch(
+        "http://auto-backend-node-production.up.railway.app/cars",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(car),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);

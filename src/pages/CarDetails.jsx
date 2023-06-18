@@ -1038,7 +1038,7 @@ const CarDetails = () => {
 
   const fetchCars = async () => {
     try {
-      const response = await fetch('http://localhost:3000/cars');
+      const response = await fetch('https://auto-backend-node-production.up.railway.app/cars');
       if (response.ok) {
         const data = await response.json();
 
@@ -1153,6 +1153,7 @@ const CarDetails = () => {
                 <Col xs="12" md="6" className="mt-5" >
                   <div className="booking-info mt-5">
                     <h5 className="mb-4 fw-bold ">Descriere</h5>
+                    <p> Numar Telefon:  0737090340</p>
                     <p>* Y G G Automobile *</p>
                     <p>*Posibilitate achizitionare cash si prin finantare(rate), cu sau fara avans. Aveti nevoie doar de buletin !</p>
                     <p>*Aprobare si finantare direct la sediul nostru sau totul online in maxim 1 ora!</p>

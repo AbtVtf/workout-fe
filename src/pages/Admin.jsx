@@ -17,14 +17,15 @@ import CarEditor from "../components/UI/CarEditor";
 const Admin = () => {
     const [pass, setPass] = useState("")
     const [carsData, setCarsData] = useState([]);
-
     useEffect(() => {
         fetchCars();
     }, []);
 
+
+
     const fetchCars = async () => {
         try {
-            const response = await fetch('http://localhost:3000/cars');
+            const response = await fetch('https://auto-backend-node-production.up.railway.app/cars');
             if (response.ok) {
                 const data = await response.json();
 
@@ -38,21 +39,19 @@ const Admin = () => {
     };
     return (
         <>
+
             <CarEditor />
-            {pass === "P@554YGG" ? <Helmet title="Admin">
-                <CarEditor />
-                {/* <Container>
+            <CommonSection title="Masini" />
+
+            <section>
+                <Container>
                     <Row>
                         {carsData?.map((item) => (
-                            <CarItem item={item} key={item.id} />
+                            <CarItem item={item} key={item.id} isDelete={true} />
                         ))}
                     </Row>
-                </Container> */}
-            </Helmet> :
-                <div style={{ height: "80vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <h2 style={{ marginRight: "40px" }}>Admin Pass:</h2>
-                    <input onChange={(event) => setPass(event.target.value)}></input>
-                </div>}
+                </Container>
+            </section>
         </>
     );
 };

@@ -10,10 +10,6 @@ const quickLinks = [
     display: "About",
   },
 
-  {
-    path: "#",
-    display: "Privacy Policy",
-  },
 
   {
     path: "/cars",
@@ -72,12 +68,12 @@ const Footer = () => {
           <Col lg="3" md="4" sm="6">
             <div className="mb-4">
               <h5 className="footer__link-title mb-4">Sediu</h5>
-              <p className="office__info">123 Lorem ipsum, Lorem, ipsum</p>
-              <p className="office__info">Phone: +6666666666</p>
+              <p className="office__info">DN1A Centura de Est, Ploiesti 107072</p>
+              <p className="office__info">Phone: 0737090340</p>
 
-              <p className="office__info">Email: test@gmail.com</p>
+              <p className="office__info">Email: georgegoslan1987@yahoo.com</p>
 
-              <p className="office__info">Office Time: 10am - 6pm</p>
+              <p className="office__info">Office Time: 09:00 - 17:00</p>
             </div>
           </Col>
 

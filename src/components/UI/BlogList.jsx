@@ -15,7 +15,7 @@ const BlogList = () => {
 };
 
 const BlogItem = ({ item }) => {
-  const { imgUrl, title, author, date, description, time } = item;
+  const { imgUrl, title, author, date, description1, description2, time } = item;
 
   return (
     <Col lg="4" md="6" sm="6" className="mb-5">
@@ -26,9 +26,9 @@ const BlogItem = ({ item }) => {
             {title}
           </Link>
           <p className="section__description mt-3">
-            {description.length > 100
-              ? description.substr(0, 100)
-              : description}
+            {description1.length > 100
+              ? description1.substr(0, 100)
+              : description1}
           </p>
 
           <Link to={`/blogs/${title}`} className="read__more">

@@ -4,39 +4,50 @@ import { Link } from "react-router-dom";
 import "../../styles/car-item.css";
 
 const CarItem = (props) => {
-  const { imgUrl, model, carName, automatic, speed, price } = props.item;
+  const { images, model, transmission, price, id, year } = props.item;
+  const firstImage = images && images.length > 0 ? images[0] : null;
 
   return (
     <Col lg="4" md="4" sm="6" className="mb-5">
-      <div className="car__item">
-        <div className="car__img">
-          <img src={imgUrl} alt="" className="w-100" />
+      <div className="car__item" style={{ height: "412px", minHeight: "412px" }}>
+        <div className="car__img" style={{ display: "flex", justifyContent: "center" }}>
+          <img src={firstImage} alt="" style={{ height: "20vh", width: "30vw", objectFit: "cover" }} />
         </div>
 
         <div className="car__item-content mt-4">
-          <h4 className="section__title text-center">{carName}</h4>
+          <h4
+            className="section__title text-center"
+            style={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              width: "100%"
+            }}
+          >
+            {model}
+          </h4>
           <h6 className="rent__price text-center mt-">
-            ${price}.00
+            {price} €
           </h6>
 
           <div className="car__item-info d-flex align-items-center justify-content-between mt-3 mb-4">
             <span className=" d-flex align-items-center gap-1">
-              <i class="ri-car-line"></i> {model}
+              <i class="ri-car-line"></i> {year}
             </span>
             <span className=" d-flex align-items-center gap-1">
-              <i class="ri-settings-2-line"></i> {automatic}
+              <i class="ri-settings-2-line"></i> {transmission}
             </span>
             {/* <span className=" d-flex align-items-center gap-1">
               <i class="ri-timer-flash-line"></i> {speed}
             </span> */}
           </div>
-          <Link to={`/cars/${carName}`}>
-            <button className=" w-100 car__item-btn car__btn-details">
-              <span style={{ color: "white", fontWeight: "600", fontSize: "20px", letterSpacing: ".7px" }}>Detalii</span>
-            </button>
-          </Link>
-
         </div>
+
+        <Link to={`/cars/${id}`} >
+          <button className=" w-100 car__item-btn car__btn-details" style={{ bottom: "0" }}>
+            <span style={{ color: "white", fontWeight: "600", fontSize: "20px", letterSpacing: ".7px" }}>Detalii</span>
+          </button>
+        </Link>
       </div>
     </Col>
   );

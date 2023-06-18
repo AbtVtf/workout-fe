@@ -42,11 +42,11 @@ const BlogDetails = () => {
                   </span>
                 </div>
 
-                <p className="section__description">{blog.description}</p>
+                <p className="section__description">{blog.description1}</p>
                 <h6 className="ps-5 fw-normal">
                   <blockquote className="fs-4">{blog.quote}</blockquote>
                 </h6>
-                <p className="section__description">{blog.description}</p>
+                <p className="section__description">{blog.description2}</p>
               </div>
 
             </Col>

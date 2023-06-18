@@ -8,21 +8,18 @@ import "../styles/contact.css";
 
 const socialLinks = [
   {
-    url: "#",
+    url: "https://www.facebook.com/profile.php?id=100091499081186",
     icon: "ri-facebook-line",
   },
   {
-    url: "#",
+    url: "https://www.instagram.com/yggautomobile/",
     icon: "ri-instagram-line",
   },
-  {
-    url: "#",
-    icon: "ri-linkedin-line",
-  },
-  {
-    url: "#",
-    icon: "ri-twitter-line",
-  },
+  // {
+  //   url: "#",
+  //   icon: "ri-tiktok-line",
+  // },
+
 ];
 
 const Contact = () => {
@@ -43,11 +40,7 @@ const Contact = () => {
                   <Input placeholder="Email" type="email" />
                 </FormGroup>
                 <FormGroup className="contact__form">
-                  <textarea
-                    rows="5"
-                    placeholder="Message"
-                    className="textarea"
-                  ></textarea>
+                  <Input placeholder="Mesajul tau..." type="message" />
                 </FormGroup>
 
                 <button className=" contact__btn" type="submit">
@@ -60,29 +53,30 @@ const Contact = () => {
               <div className="contact__info">
                 <h6 className="fw-bold">Informatii de contact</h6>
                 <p className="section__description mb-0">
-                  123 lorem ipsum, Lorem, Ipsum
-                </p>
+                  DN1A Centura de Est, Ploiesti 107072                </p>
                 <div className=" d-flex align-items-center gap-2">
                   <h6 className="fs-6 mb-0">Phone:</h6>
-                  <p className="section__description mb-0">+66666666</p>
+                  <p className="section__description mb-0">0737090340</p>
                 </div>
 
                 <div className=" d-flex align-items-center gap-2">
                   <h6 className="mb-0 fs-6">Email:</h6>
-                  <p className="section__description mb-0">example@gmail.com</p>
+                  <p className="section__description mb-0">georgegoslan1987@yahoo.com</p>
                 </div>
 
                 <h6 className="fw-bold mt-4">Urmareste-ne</h6>
 
                 <div className=" d-flex align-items-center gap-4 mt-3">
                   {socialLinks.map((item, index) => (
-                    <Link
-                      to={item.url}
+                    <a
+                      href={item.url}
                       key={index}
                       className="social__link-icon"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <i class={item.icon}></i>
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </div>

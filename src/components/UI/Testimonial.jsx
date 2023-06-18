@@ -41,75 +41,48 @@ const Testimonial = () => {
   return (
     <Slider {...settings}>
       <div className="testimonial py-4 px-3">
+
+        <h6 className="mb-0 mt-3">Costi</h6>
+        <p className="section__description">Client multumit</p>
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+          Oamenii sunt de încredere,  masinile sunt in stare perfecte, eu recomand 1000%
+          Am achiziționat un Golf 6 R , si masima merge perfect.
+          arata perfect,etc
         </p>
 
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava01} alt="" className="w-25 h-25 rounded-2" />
 
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
       </div>
 
       <div className="testimonial py-4 px-3">
+
+        <h6 className="mb-0 mt-3">Mihai</h6>
+        <p className="section__description">Client multumit</p>
+
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+          Super baietii! Au o gama variata de masini la preturi accesibile ! Recomand cu incredere oricui !!!
         </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava02} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
       </div>
 
       <div className="testimonial py-4 px-3">
+
+        <h6 className="mb-0 mt-3">Alexandra</h6>
+        <p className="section__description">Client multumit</p>
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+          Am achizitionat un Volkswagen Yetta  și sunt foarte, foarte mulțumită! Mulțumesc pentru promptitudine și seriozitate! Totul a decurs intr-un timp scurt, o persoană întocmește actele, altă persoană ridică numerele roșii. Iar în caz de nevoie se prezintă la RAR si Poliție. Vă mulțumesc pentru tot!
         </p>
-
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava03} alt="" className="w-25 h-25 rounded-2" />
-
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
       </div>
 
       <div className="testimonial py-4 px-3">
+
+        <h6 className="mb-0 mt-3">Claudiu</h6>
+        <p className="section__description">Client multumit</p>
+
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+          Mi-am cumpărat prima mașina de la ei. Totul a decurs fără probleme
+          Super mulțumit!
         </p>
 
-        <div className="mt-3 d-flex align-items-center gap-4">
-          <img src={ava04} alt="" className="w-25 h-25 rounded-2" />
 
-          <div>
-            <h6 className="mb-0 mt-3">Jhon Doe</h6>
-            <p className="section__description">Customer</p>
-          </div>
-        </div>
       </div>
     </Slider>
   );

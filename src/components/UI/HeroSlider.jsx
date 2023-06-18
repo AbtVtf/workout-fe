@@ -22,8 +22,8 @@ const HeroSlider = () => {
       <div className="slider__item slider__item-01 mt0">
         <Container>
           <div className="slider__content ">
-            <h4 className="text-light mb-3">Lorem ipsum</h4>
-            <h1 className="text-light mb-4">Lorem ipsum sit dolores amet</h1>
+            <h4 className="text-light mb-3">YGG AUTOMOBILE PRAHOVA</h4>
+            <h1 className="text-light mb-4">Dealerul tau auto de incredere</h1>
 
             <button className="btn reserve__btn mt-4">
               <Link to="/cars">Cumpara</Link>
@@ -35,8 +35,8 @@ const HeroSlider = () => {
       <div className="slider__item slider__item-02 mt0">
         <Container>
           <div className="slider__content ">
-            <h4 className="text-light mb-3">Lorem ipsum</h4>
-            <h1 className="text-light mb-4">Lorem ipsum sit dolores amet</h1>
+            <h4 className="text-light mb-3">YGG AUTOMOBILE PRAHOVA</h4>
+            <h1 className="text-light mb-4">Locul in care gaseseti masina ideala</h1>
             <button className="btn reserve__btn mt-4">
               <Link to="/cars">Cumpara</Link>
             </button>
@@ -47,8 +47,9 @@ const HeroSlider = () => {
       <div className="slider__item slider__item-03 mt0">
         <Container>
           <div className="slider__content ">
-            <h4 className="text-light mb-3">Lorem ipsum</h4>
-            <h1 className="text-light mb-4">Lorem ipsum sit dolores amet</h1>
+            <h4 className="text-light mb-3">YGG AUTOMOBILE PRAHOVA</h4>
+
+            <h1 className="text-light mb-4">Caliate si profesionalism</h1>
             <button className="btn reserve__btn mt-4">
               <Link to="/cars">Cumpara</Link>
             </button>

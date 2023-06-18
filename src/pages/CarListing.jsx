@@ -3,9 +3,33 @@ import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
-import carData from "../assets/data/carData";
+import { carMock } from "./mockData.tsx";
+import { useState } from "react";
+import { useEffect } from "react";
+
 
 const CarListing = () => {
+  const [carsData, setCarsData] = useState([]);
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
+
+  const fetchCars = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/cars');
+      if (response.ok) {
+        const data = await response.json();
+        console.log({ data })
+        console.log({ carMock })
+        setCarsData(data);
+      } else {
+        console.error('Failed to fetch cars:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching cars:', error);
+    }
+  };
   return (
     <Helmet title="Cars">
       <CommonSection title="Masini" />
@@ -13,21 +37,9 @@ const CarListing = () => {
       <section>
         <Container>
           <Row>
-            <Col lg="12">
-              <div className=" d-flex align-items-center gap-3 mb-5">
-                <span className=" d-flex align-items-center gap-2">
-                  <i class="ri-sort-asc"></i> Sorteaza dupa:
-                </span>
 
-                <select>
-                  <option>Selecteaza</option>
-                  <option value="low">Pret Cresc.</option>
-                  <option value="high">Pret Desc.</option>
-                </select>
-              </div>
-            </Col>
 
-            {carData.map((item) => (
+            {carsData?.map((item) => (
               <CarItem item={item} key={item.id} />
             ))}
           </Row>

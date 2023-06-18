@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import HeroSlider from "../components/UI/HeroSlider";
 import Helmet from "../components/Helmet/Helmet";
@@ -14,7 +14,29 @@ import Testimonial from "../components/UI/Testimonial";
 
 import BlogList from "../components/UI/BlogList";
 
+
 const Home = () => {
+  const [carMock, setCarMock] = useState([]);
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
+
+  const fetchCars = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/cars');
+      if (response.ok) {
+        console.log(response)
+        const data = await response.json();
+        console.log(data)
+        setCarMock(data);
+      } else {
+        console.error('Failed to fetch cars:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching cars:', error);
+    }
+  };
   return (
     <Helmet title="Home">
       {/* ============= hero section =========== */}
@@ -31,14 +53,13 @@ const Home = () => {
               <h2 className="section__title">Oferte</h2>
             </Col>
 
-            {carData.slice(0, 6).map((item) => (
+            {carMock.length > 0 && carMock?.slice(0, 6).map((item) => (
               <CarItem item={item} key={item.id} />
             ))}
           </Row>
         </Container>
       </section>
       {/* =========== become a driver section ============ */}
-      <BecomeDriverSection />
 
       {/* =========== testimonial section =========== */}
       <section>

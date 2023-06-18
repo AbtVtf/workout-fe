@@ -45,7 +45,7 @@ function CarEditor() {
     console.log(car);
     try {
       const response = await fetch(
-        "http://auto-backend-node-production.up.railway.app/cars",
+        "https://auto-backend-node-production.up.railway.app/cars",
         {
           method: "POST",
           headers: {

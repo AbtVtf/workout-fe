@@ -45,10 +45,9 @@ const Footer = () => {
               </h1>
             </div>
             <p className="footer__logo-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur, distinctio, itaque reiciendis ab cupiditate harum ex
-              quam veniam, omnis expedita animi quibusdam obcaecati mollitia?
-              Delectus et ad illo recusandae temporibus?
+              Sunteți în căutarea mașinii perfecte sau doriți să vă actualizați vehiculul actual? Echipa noastră dedicată de experți auto este aici pentru a vă ajuta să găsiți cea mai bună opțiune pentru nevoile dvs.
+
+              Ne angajăm să oferim un serviciu excepțional și o experiență de cumpărare fără stres. Vă invităm să vizitați showroom-ul nostru sau să ne contactați pentru a descoperi mai multe despre gama noastră de vehicule.
             </p>
           </Col>
 

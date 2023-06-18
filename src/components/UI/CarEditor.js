@@ -9,10 +9,10 @@ function CarEditor() {
     emissionStandard: "",
     year: "",
     km: 0,
-    options: [""],
-    imgUrl: [""],
+    options: [],
+    imgUrl: [],
   });
-
+  const [options, setOptions] = useState([]);
   const handleInputChange = (event, index, field, isOptionOrImage) => {
     if (isOptionOrImage) {
       const newOptionsOrImages = [...car[field]];
@@ -29,20 +29,22 @@ function CarEditor() {
     }
   };
 
-  const handleAddOption = () => {
-    if (car.options[car.options.length - 1] !== "") {
-      setCar({ ...car, options: [...car.options, ""] });
-    }
-  };
-
   const handleAddImgUrl = () => {
     if (car.imgUrl[car.imgUrl.length - 1] !== "") {
       setCar({ ...car, imgUrl: [...car.imgUrl, ""] });
     }
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(car);
+
+    const carToSubmit = {
+      ...car,
+      imgUrl: car.imgUrl.filter((url) => url !== ""), // filter out any empty strings
+    };
+
+    console.log(carToSubmit);
+
     try {
       const response = await fetch(
         "https://auto-backend-node-production.up.railway.app/cars",
@@ -51,7 +53,7 @@ function CarEditor() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(car),
+          body: JSON.stringify(carToSubmit), // send carToSubmit instead of car
         }
       );
 
@@ -65,6 +67,23 @@ function CarEditor() {
       console.error("Failed to post new car", error);
     }
   };
+
+  const [option, setOption] = useState("");
+
+  const handleAddOption = (optionArg) => {
+    if (optionArg !== "") {
+      setCar({ ...car, options: [...car.options, optionArg] });
+      setOption(""); // clear out the option input after it's added
+    }
+  };
+
+  const handleDeleteOption = (optionToRemove) => {
+    const newOptions = car.options.filter(
+      (option) => option !== optionToRemove
+    );
+    setCar({ ...car, options: newOptions });
+  };
+
   return (
     <div>
       <form
@@ -126,19 +145,42 @@ function CarEditor() {
             onChange={(e) => handleInputChange(e, null, "year")}
           />
         </label>
-        {car.options.map((option, index) => (
-          <label key={index}>
-            Option:
-            <input
-              type="text"
-              value={option}
-              onChange={(e) => handleInputChange(e, index, "options", true)}
-            />
-          </label>
-        ))}
-        <button type="button" onClick={handleAddOption}>
-          Add Option
+        {car.options.map((option, index) => {
+          return (
+            <div style={{ display: "flex", gap: "40px" }} key={index}>
+              <p>{option}</p>
+              <button
+                style={{ height: "30px" }}
+                onClick={() => {
+                  handleDeleteOption(option);
+                }}
+              >
+                delete
+              </button>
+            </div>
+          );
+        })}
+        <label>
+          Option:
+          <input
+            type="text"
+            value={option}
+            onChange={(event) => {
+              setOption(event.target.value);
+            }}
+          />
+        </label>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleAddOption(option);
+          }}
+        >
+          add option
         </button>
+        {/* <button type="button" onClick={handleAddOption}>
+          Add Option
+        </button> */}
 
         {car.imgUrl.map((url, index) => (
           <label key={index}>

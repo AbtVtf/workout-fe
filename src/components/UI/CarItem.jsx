@@ -8,7 +8,7 @@ const CarItem = (props) => {
   const { isDelete = false } = props
   const firstImage = images && images.length > 0 ? images[0] : null;
   function deleteCar(id) {
-    return fetch(`http://auto-backend-node-production.up.railway.app/cars/${id}`, {
+    return fetch(`https://auto-backend-node-production.up.railway.app/cars/${id}`, {
       method: 'DELETE',
     })
       .then((response) => {

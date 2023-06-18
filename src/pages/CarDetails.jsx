@@ -1087,7 +1087,7 @@ const CarDetails = () => {
 
                 <div className=" d-flex align-items-center gap-5 mb-4 mt-3">
                   <h6 className="rent__price fw-bold fs-4">
-                    {singleCarItem?.price}€
+                    {parseInt(singleCarItem?.price, 10).toLocaleString('de-DE')}€
                   </h6>
                 </div>
 
